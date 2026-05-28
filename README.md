@@ -1,1 +1,5 @@
-# senai-chrono-focus
+# Projeto TCC - Chrono Focus
+
+## Equipe
+- Desenvolvimento Backend:
+- Frontend & QA: 
