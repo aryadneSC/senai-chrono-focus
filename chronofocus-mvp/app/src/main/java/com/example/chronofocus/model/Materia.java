@@ -1,14 +1,16 @@
-package com.example.chronofocus.entities;
+package com.example.chronofocus.model;
 
 import java.io.Serializable;
 
 public class Materia implements Serializable {
 	private String nome;
 	private long baseTime;
+	private DaysWeek day;
 	
-	public Materia(String nome, long baseTime) {
+	public Materia(String nome, long baseTime, DaysWeek day){
 		this.nome = nome;
 		this.baseTime = baseTime;
+		this.day = day;
 	}
 
 	public String getNome() {
@@ -26,7 +28,9 @@ public class Materia implements Serializable {
 	public void setBaseTime(long baseTime) {
 		this.baseTime = baseTime;
 	}
-	
+
+	public DaysWeek getDay() {return day;}
+
 	@Override
 	public String toString() {
 		String format = String.format("%s\n%d", nome, baseTime);

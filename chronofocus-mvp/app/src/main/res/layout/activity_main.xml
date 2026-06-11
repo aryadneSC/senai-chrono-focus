@@ -26,26 +26,10 @@
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/edtNovaMateria"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Digite o nome da matéria..."
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:minHeight="48dp" />
-
-    <Button
-        android:id="@+id/btnAdicionarMateria"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text=" Adicionar Matéria" />
-
     <ListView
         android:id="@+id/listVMaterias"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="435dp"
         android:layout_weight="1" />
 
 </LinearLayout>

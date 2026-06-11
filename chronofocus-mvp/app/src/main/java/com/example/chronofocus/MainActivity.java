@@ -15,9 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText edtNovaMateria;
-    private Button btnAdicionar;
-    private ListView lvMaterias;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,24 +33,12 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        edtNovaMateria = findViewById(R.id.edtNovaMateria);
-        btnAdicionar = findViewById(R.id.btnAdicionarMateria);
-        lvMaterias = findViewById(R.id.listVMaterias);
+
 
         Button btnVoltar = findViewById(R.id.btnVoltarMateria);
         btnVoltar.setOnClickListener(v -> finish());
 
-        btnAdicionar.setOnClickListener(v -> {
-            String nomeMateria = edtNovaMateria.getText().toString().trim();
 
-            if (nomeMateria.isEmpty()) {
-                edtNovaMateria.setError("Insira o nome da matéria!");
-                edtNovaMateria.requestFocus();
-            } else {
-                Toast.makeText(MainActivity.this, "Matéria adicionada!", Toast.LENGTH_SHORT).show();
-                edtNovaMateria.setText("");
-            }
-        });
 
     }
     @Override

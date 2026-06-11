@@ -10,25 +10,26 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.chronofocus.databinding.ActivityHomeBinding;
+
 public class HomeActivity extends AppCompatActivity {
-    private Button btnIniciarSessao;
+    private ActivityHomeBinding binding;
     private TextView txtVerTodas, txtSaudacao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        binding = ActivityHomeBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-        btnIniciarSessao = findViewById(R.id.btnIniciarSessao);
-        txtVerTodas = findViewById(R.id.txtVerTodas);
-        txtSaudacao = findViewById(R.id.txtSaudacao);
 
         SharedPreferences prefs = getSharedPreferences("ChronoPrefs", Context.MODE_PRIVATE);
         String nomeSalvo = prefs.getString("usuario_nome", "Usuário");
 
-        txtSaudacao.setText(String.format("Olá, %s!", nomeSalvo));
+        binding.txtSaudacao.setText(String.format("Olá, %s!", nomeSalvo));
 
-        txtVerTodas.setOnClickListener(v -> {
+        binding.txtVerTodas.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, MainActivity.class);
             startActivity(intent);
         });
