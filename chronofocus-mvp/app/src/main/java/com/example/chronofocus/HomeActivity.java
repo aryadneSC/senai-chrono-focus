@@ -33,12 +33,11 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Quando add... Abre Timer
-        /*
-        btnIniciarSessao.setOnClickListener(v -> {
-            // Intent intent = new Intent(HomeActivity.this, ExemploTrocarPraTimer.class);
-            // startActivity(intent);
+
+        binding.btnIniciarSessao.setOnClickListener(v -> {
+             Intent intent = new Intent(HomeActivity.this, TimerActivity.class);
+             startActivity(intent);
         });
-        */
+
     }
 }
