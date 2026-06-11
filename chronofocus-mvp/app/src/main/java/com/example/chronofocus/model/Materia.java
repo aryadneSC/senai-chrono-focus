@@ -6,8 +6,8 @@ public class Materia implements Serializable {
 	private String nome;
 	private long baseTime;
 	private DaysWeek day;
-	
-	public Materia(String nome, long baseTime, DaysWeek day){
+	private int priority;
+	public Materia(String nome, long baseTime, DaysWeek day, int priority){
 		this.nome = nome;
 		this.baseTime = baseTime;
 		this.day = day;

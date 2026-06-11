@@ -22,7 +22,7 @@
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".SubjectListActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity2"
@@ -30,6 +30,10 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".CadastroMateriaActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".TimerActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>

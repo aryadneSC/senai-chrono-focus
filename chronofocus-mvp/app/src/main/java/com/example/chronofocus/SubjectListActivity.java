@@ -3,25 +3,26 @@ package com.example.chronofocus;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Toast;
-
+import android.os.Bundle;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.chronofocus.databinding.ActivitySubjectListBinding;
 
+public class SubjectListActivity extends AppCompatActivity {
 
+    private ActivitySubjectListBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        binding = ActivitySubjectListBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -34,11 +35,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
-        Button btnVoltar = findViewById(R.id.btnVoltarMateria);
-        btnVoltar.setOnClickListener(v -> finish());
-
-
+        binding.btnVoltarMateria.setOnClickListener(v -> finish());
 
     }
     @Override
@@ -47,10 +44,10 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        finish();
+//    }
 
 }
