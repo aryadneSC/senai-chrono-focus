@@ -1,4 +1,4 @@
-package com.example.chronofocus;
+package com.example.chronofocus.activities;
 
 import android.content.Context;
 import android.content.Intent;

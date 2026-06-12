@@ -1,5 +1,11 @@
 package com.example.chronofocus.repository;
 
+import android.content.Context;
+
+import androidx.lifecycle.LiveData;
+
+import com.example.chronofocus.data.MateriaDao;
+import com.example.chronofocus.data.MateriaDataBase;
 import com.example.chronofocus.model.DaysWeek;
 import com.example.chronofocus.model.Materia;
 
@@ -9,30 +15,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MateriaRepository  {
-    private final List<Materia> listaDeMaterias = new ArrayList<>();
-    public List<Materia> getListaMateria(){
-        return List.copyOf(listaDeMaterias);
+    private MateriaDao db;
+
+    public MateriaRepository(Context context){
+        db = MateriaDataBase.getInstance(context).materiaDao();
     }
-    public void add(Materia materia){
-        listaDeMaterias.add(materia);
+    public LiveData<List<Materia>> listarMaterias(int limit, DaysWeek day){
+        db.listarMaterias(limit, day);
+    }
+    public LiveData<List<Materia>> listarMaterias(){
+        return db.listarMaterias();
+    }
+    public void inserirMaterias(Materia materia){
+        db.insertMateria(materia);
+    }
+    public void deletarMaterias(Materia materia){
+        db.deleteMateria(materia);
     }
 
-    public void remove(Materia materia){
-        listaDeMaterias.remove(materia);
-    }
-
-    public void remove(int index){
-        listaDeMaterias.remove(index);
-    }
-
-    public void removeAll(){
-        listaDeMaterias.clear();
-    }
-    public List<Materia> filtrarMateria(DaysWeek day, int limit){
-        return listaDeMaterias.stream().filter( x -> x.getDay() == day).limit(limit).collect(Collectors.toList());
-    }
-
-    public List<Materia> filtrarMateria(int limit){
-        return listaDeMaterias.stream().limit(limit).collect(Collectors.toList());
-    }
 }

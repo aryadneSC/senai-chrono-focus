@@ -1,4 +1,4 @@
-package com.example.chronofocus;
+package com.example.chronofocus.activities;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -10,6 +10,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.chronofocus.R;
 import com.example.chronofocus.databinding.ActivityTimerBinding;
 
 import java.sql.Time;

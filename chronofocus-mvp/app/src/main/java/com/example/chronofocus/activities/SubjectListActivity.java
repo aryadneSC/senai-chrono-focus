@@ -1,15 +1,15 @@
-package com.example.chronofocus;
+package com.example.chronofocus.activities;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.os.Bundle;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.chronofocus.R;
 import com.example.chronofocus.databinding.ActivitySubjectListBinding;
 
 public class SubjectListActivity extends AppCompatActivity {
@@ -38,16 +38,6 @@ public class SubjectListActivity extends AppCompatActivity {
         binding.btnVoltarMateria.setOnClickListener(v -> finish());
 
     }
-    @Override
-    public boolean onSupportNavigateUp() {
-        finish();
-        return true;
-    }
 
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//        finish();
-//    }
 
 }
