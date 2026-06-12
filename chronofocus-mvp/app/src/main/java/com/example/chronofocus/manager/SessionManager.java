@@ -24,6 +24,7 @@ public class SessionManager {
     public Materia getMateria(){
         if (!materiasDoDia.isEmpty())
             return new Materia(materiasDoDia.get(0));
+        return null;
     }
 
     @Nullable

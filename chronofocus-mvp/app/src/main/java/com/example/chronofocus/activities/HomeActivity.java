@@ -5,11 +5,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.chronofocus.databinding.ActivityHomeBinding;
+import com.example.chronofocus.model.Materia;
+
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
     private ActivityHomeBinding binding;
@@ -39,5 +43,11 @@ public class HomeActivity extends AppCompatActivity {
              startActivity(intent);
         });
 
+    }
+
+    private void myAdapter(List<Materia> list){
+        ArrayAdapter<Materia> adapter =  new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+
+        binding..setAdapter(adapter);
     }
 }

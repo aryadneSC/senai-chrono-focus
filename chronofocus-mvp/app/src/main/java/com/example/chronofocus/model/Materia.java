@@ -53,8 +53,20 @@ public class Materia  {
 		return baseTime;
 	}
 
+	public int getPriority() {
+		return priority;
+	}
+
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
+
 	public void setBaseTime(long baseTime) {
 		this.baseTime = baseTime;
+	}
+
+	public void setDay(DaysWeek day) {
+		this.day = day;
 	}
 
 	public DaysWeek getDay() {return day;}

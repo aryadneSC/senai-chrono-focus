@@ -30,25 +30,18 @@ public class TimerActivity extends AppCompatActivity {
             return insets;
         });
 
+
         binding.button.setOnClickListener(l -> {
-            long millis = 1000;
-            CountDownTimer timer = new CountDownTimer(millis, 1000) {
-                @Override
-
-                public void onFinish() {
-
-                }
-
+           new CountDownTimer(1000, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     Time time = new Time(millisUntilFinished);
-                    binding.textViewTimer.setText(String.format("%s", time));
-                    /*
-                    if() {
-//                        this.cancel();
-                    }
-                    */
+                    binding.textViewTimer.setText(String.format("%s", time.toString()));
+                }
 
+                @Override
+                public void onFinish(){
+                    finish();
                 }
             }.start();
 

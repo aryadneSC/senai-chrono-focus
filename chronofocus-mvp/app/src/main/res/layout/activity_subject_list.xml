@@ -8,7 +8,7 @@
     android:gravity="start"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".SubjectListActivity">
+    tools:context=".activities.SubjectListActivity">
 
     <Button
         android:id="@+id/btnVoltarMateria"
@@ -25,6 +25,12 @@
         android:text="@string/materias"
         android:textSize="24sp"
         android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="239dp"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 
     <ListView
         android:id="@+id/listVMaterias"

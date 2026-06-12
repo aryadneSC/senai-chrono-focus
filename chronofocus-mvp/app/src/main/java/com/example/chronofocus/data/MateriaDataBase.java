@@ -15,9 +15,11 @@ public abstract class MateriaDataBase extends RoomDatabase {
     public abstract MateriaDao materiaDao();
 
     public static MateriaDataBase getInstance(Context context){
-        if (instance == null){
+        if (instance == null)
             instance = Room.databaseBuilder(context.getApplicationContext(), MateriaDataBase.class, "dados-usuario").build();
-        }
+
         return instance;
     }
+
+
 }

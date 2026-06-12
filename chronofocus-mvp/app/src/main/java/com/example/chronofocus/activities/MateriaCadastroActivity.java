@@ -2,6 +2,7 @@ package com.example.chronofocus.activities;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.chronofocus.R;
 import com.example.chronofocus.databinding.ActivityMateriaCadastroBinding;
+import com.example.chronofocus.model.DaysWeek;
+import com.example.chronofocus.model.Materia;
 import com.example.chronofocus.viewmodels.MateriaCadastroViewModel;
 
 
@@ -26,7 +29,7 @@ public class MateriaCadastroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMateriaCadastroBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
-        viewModel = new ViewModelProvider(this).get(MateriaCadastroViewModel.class);
+        viewModel = new ViewModelProvider(this, ViewModelProvider.Factory.from(MateriaCadastroViewModel.initializer)).get(MateriaCadastroViewModel.class);
         EdgeToEdge.enable(this);
         setContentView(view);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -34,5 +37,17 @@ public class MateriaCadastroActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        binding.btn2.setOnClickListener(v -> {
+            String nome = binding.txtbx1.getText().toString();
+            if (nome.isEmpty()){
+                Toast.makeText(this, "Por favor, digite o nome da materia!", Toast.LENGTH_SHORT).show();
+            } else {
+                viewModel.inserirMateria(new Materia(nome, 30, DaysWeek.SATURDAY, 5));
+                finish();
+            }
+        });
+
+
     }
 }

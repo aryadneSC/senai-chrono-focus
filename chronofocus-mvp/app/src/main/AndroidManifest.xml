@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Chronofocusmvp">
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,10 +19,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomeActivity"
+            android:name=".activities.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".SubjectListActivity"
+            android:name=".activities.SubjectListActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity2"
@@ -33,11 +33,11 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".TimerActivity"
+            android:name=".activities.TimerActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".MateriaCadastroActivity"
+            android:name=".activities.MateriaCadastroActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>
