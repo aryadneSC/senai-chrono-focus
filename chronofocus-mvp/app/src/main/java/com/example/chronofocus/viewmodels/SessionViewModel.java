@@ -64,7 +64,7 @@ public class SessionViewModel extends ViewModel {
             creationExtras  -> {
                 ChronoFocusApp app = (ChronoFocusApp) creationExtras.get(APPLICATION_KEY);
                 assert app != null;
-                ChronoDataBase db = ChronoDataBase.getInstance(app);
+                
                 SessionTimerRepository _timerRepo = app.getsRepo();
                 // DISCLAIMER: Provisório enquanto não tem a factory ainda
                 MateriaRepository _materiaRepo = app.getRepo();
