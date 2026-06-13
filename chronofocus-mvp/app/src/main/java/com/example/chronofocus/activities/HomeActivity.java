@@ -50,7 +50,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         binding.btnIniciarSessao.setOnClickListener(v -> {
-             Intent intent = new Intent(HomeActivity.this, TimerActivity.class);
+             Intent intent = new Intent(HomeActivity.this, SessionActivity.class);
              startActivity(intent);
         });
 
@@ -62,9 +62,11 @@ public class HomeActivity extends AppCompatActivity {
         binding.txtSaudacao.setText(String.format("Olá, %s!", nomeSalvo));
     }
 
+
     private void myAdapter(List<Materia> materias){
 
         ArrayAdapter<Materia> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, materias);
         binding.listView.setAdapter(adapter);
+
     }
 }

@@ -11,8 +11,8 @@ import java.util.Locale;
 @Entity(indices = {@Index(value = {"nome"}, unique = true)})
 public class Materia  {
    @PrimaryKey(autoGenerate = true)
+   @ColumnInfo(name = "id")
 	private int id;
-
     @ColumnInfo(name  = "nome")
 	private String nome;
 	@ColumnInfo(name = "base_time")

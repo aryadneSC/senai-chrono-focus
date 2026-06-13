@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
-import com.example.chronofocus.data.MateriaDataBase;
+import com.example.chronofocus.data.ChronoDataBase;
 import com.example.chronofocus.model.Materia;
 import com.example.chronofocus.repository.MateriaRepository;
 
@@ -23,7 +23,7 @@ public class SubjectListViewModel extends ViewModel {
             creationExtras  -> {
                 Application app = creationExtras.get(APPLICATION_KEY);
                 assert app != null;
-                MateriaDataBase db = MateriaDataBase.getInstance(app);
+                ChronoDataBase db = ChronoDataBase.getInstance(app);
                 MateriaRepository repository = new MateriaRepository(db.materiaDao());
 
                 return new SubjectListViewModel(repository);

@@ -8,7 +8,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
-import com.example.chronofocus.data.MateriaDataBase;
+
+import com.example.chronofocus.data.ChronoDataBase;
+
 import com.example.chronofocus.model.DaysWeek;
 import com.example.chronofocus.model.Materia;
 import com.example.chronofocus.repository.MateriaRepository;
@@ -27,8 +29,9 @@ public class HomeViewModel extends ViewModel {
 
                Application app = creationExtras.get(APPLICATION_KEY);
                assert app != null;
-               MateriaDataBase materiaDataBase = MateriaDataBase.getInstance(app);
-               MateriaRepository repository = new MateriaRepository(materiaDataBase.materiaDao());
+
+               ChronoDataBase chronoDataBase = ChronoDataBase.getInstance(app);
+               MateriaRepository repository = new MateriaRepository(chronoDataBase.materiaDao());
 
                return new HomeViewModel(repository);
     });
