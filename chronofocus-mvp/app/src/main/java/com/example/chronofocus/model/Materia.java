@@ -86,6 +86,6 @@ public class Materia  {
     @Override
 	public String toString() {
 
-		return  String.format(Locale.getDefault(),"%s\n dia de estudo: %s", nome, day);
+		return  String.format(Locale.getDefault(),"%s", nome);
 	}
 }
