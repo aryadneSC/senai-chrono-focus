@@ -14,6 +14,7 @@ import com.example.chronofocus.model.DaysWeek;
 import com.example.chronofocus.model.Materia;
 import com.example.chronofocus.model.SessionTimer;
 import com.example.chronofocus.repository.MateriaRepository;
+import com.example.chronofocus.repository.SessionRepository;
 import com.example.chronofocus.repository.SessionTimerRepository;
 import com.example.chronofocus.utils.TimerUtils;
 
@@ -25,9 +26,11 @@ import java.util.Queue;
 
 public class SessionViewModel extends ViewModel {
     private final SessionTimerRepository timerRepo;
+    private final SessionRepository session;
     private final MateriaRepository materiaRepo;
     private Queue<Materia> sessionMaterias;
-    public SessionViewModel(SessionTimerRepository timerRepo, MateriaRepository materiaRepo){
+    public SessionViewModel(SessionTimerRepository timerRepo, MateriaRepository materiaRepo, SessionRepository session){
+        this.session = session;
         this.timerRepo = timerRepo;
         this.materiaRepo = materiaRepo;
         //
@@ -64,19 +67,18 @@ public class SessionViewModel extends ViewModel {
             creationExtras  -> {
                 ChronoFocusApp app = (ChronoFocusApp) creationExtras.get(APPLICATION_KEY);
                 assert app != null;
-                
-                SessionTimerRepository _timerRepo = app.getsRepo();
-                // DISCLAIMER: Provisório enquanto não tem a factory ainda
+                SessionRepository _sessionRepository = app.getSessionRepository();
+                SessionTimerRepository _timerRepo = app.getTimerRepo();
                 MateriaRepository _materiaRepo = app.getRepo();
-                return new SessionViewModel(_timerRepo, _materiaRepo);
+                return new SessionViewModel(_timerRepo, _materiaRepo, _sessionRepository);
             }
     );
 
-    private LiveData<List<Materia>> getOrderedDayMaterias(DaysWeek day) {
-
-        // -> return materiaRepo.listarMateriasOrdenadas(day)
-        return materiaRepo.listarMaterias(day);
-    }
+//    private LiveData<List<Materia>> getOrderedDayMaterias(DaysWeek day) {
+//
+//        // -> return materiaRepo.listarMateriasOrdenadas(day)
+//        return materiaRepo.listarMaterias(day);
+//    }
 
     public void insertSessionTimer(SessionTimer sessionTimer){
         if (sessionTimer == null)

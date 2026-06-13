@@ -46,7 +46,8 @@ public class SessionActivity extends AppCompatActivity {
 
         viewModel.getNextMateria();
 
-        long time = proximaMateria.getBaseTime();
+        //long time = proximaMateria.getBaseTime();
+        long time = 10000;
         binding.button.setOnClickListener(l -> {
            new CountDownTimer(time, 1) {
                 @Override
