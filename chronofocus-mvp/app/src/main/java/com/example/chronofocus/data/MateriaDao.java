@@ -24,6 +24,4 @@ public interface MateriaDao {
 
     @Query("SELECT * FROM Materia WHERE day = :day LIMIT:limit")
     public LiveData<List<Materia>> listarMaterias(int limit, DaysWeek day);
-
-
 }

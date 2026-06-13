@@ -39,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
         binding.btnIniciarSessao.setOnClickListener(v -> {
-             Intent intent = new Intent(HomeActivity.this, TimerActivity.class);
+             Intent intent = new Intent(HomeActivity.this, SessionActivity.class);
              startActivity(intent);
         });
 
@@ -48,6 +48,6 @@ public class HomeActivity extends AppCompatActivity {
     private void myAdapter(List<Materia> list){
         ArrayAdapter<Materia> adapter =  new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
 
-        binding..setAdapter(adapter);
+        //binding..setAdapter(adapter);
     }
 }
