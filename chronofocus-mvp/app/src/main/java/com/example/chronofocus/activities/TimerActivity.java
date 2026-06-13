@@ -30,7 +30,11 @@ public class TimerActivity extends AppCompatActivity {
             return insets;
         });
 
-
+             /* DISCLAIMER (SÉRIO, MAS IGNORE SE JA ESTÁ CIENTE): Se o usuário clicar multiplas vezes no mesmo botão,
+            diversas instnacias de countDownTimer serão criadas.
+            O cerne do problema é que Garbage Collector não executará um free() na
+            instancia até que o countdown chegue a zero, causando
+         um memory leak e sérios travamentos na MainThread(UI Thread) em situações de multiplos cliques.*/
         binding.button.setOnClickListener(l -> {
            new CountDownTimer(1000, 1) {
                 @Override
