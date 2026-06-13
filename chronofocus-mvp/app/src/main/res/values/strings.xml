@@ -3,7 +3,6 @@
     <string name="ola_usuario">Olá, Usuário!</string>
     <string name="sessao_hoje">Sessão de Hoje</string>
     <string name="btn_iniciar">INICIAR</string>
-    <string name="materias">Matérias</string>
     <string name="ver_todas">VER TODAS →</string>
     <string name="hint_nova_materia">Digite o nome da matéria…</string>
     <string name="botao_adicionar">Adicionar Matéria</string>
@@ -11,4 +10,18 @@
     <string name="entrar">ENTRAR</string>
     <string name="digite_seu_nome">Digite seu nome...</string>
     <string name="materias_de_hoje">Matérias de hoje</string>
+    <string name="estudando">ESTUDANDO: %s</string>
+    <string name="pausar">Pausar</string>
+    <string name="finalizar">Finalizar</string>
+    <string name="iniciar">Iniciar</string>
+    <string name="mat_ria">Matéria</string>
+    <string name="_00_00_00">00:00:00</string>
+    <string name="title">Title</string>
+    <string name="circulo_do_timer">Circulo do timer</string>
+    <string name="container_de_tempo">Container de tempo</string>
+    <string name="estudar">Estudar</string>
+    <string name="sessao">Sessão</string>
+    <string name="login">Sessão</string>
+    <string name="materias">Matérias</string>
+    <string name="criando_materia">Criando Matéria</string>
 </resources>
