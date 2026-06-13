@@ -1,11 +1,12 @@
 package com.example.chronofocus.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-import java.io.Serializable;
+import java.util.Locale;
 
 @Entity(indices = {@Index(value = {"nome"}, unique = true)})
 public class Materia  {
@@ -20,6 +21,8 @@ public class Materia  {
 	private DaysWeek day;
 	@ColumnInfo(name = "priority")
 	private int priority;
+	@ColumnInfo(name = "ultimo_dia_estudado")
+	private String ultimoDiaEstudado;
 	public Materia(String nome, long baseTime, DaysWeek day, int priority){
 		this.nome = nome;
 		this.baseTime = baseTime;
@@ -71,9 +74,18 @@ public class Materia  {
 
 	public DaysWeek getDay() {return day;}
 
-	@Override
+	public String getUltimoDiaEstudado() {
+		return ultimoDiaEstudado;
+	}
+
+	public void setUltimoDiaEstudado(String ultimoDiaEstudado) {
+		this.ultimoDiaEstudado = ultimoDiaEstudado;
+	}
+
+	@NonNull
+    @Override
 	public String toString() {
-		String format = String.format("%s\n%d", nome, baseTime);
-		return format;
+
+		return  String.format(Locale.getDefault(),"%s\n dia de estudo: %s", nome, day);
 	}
 }

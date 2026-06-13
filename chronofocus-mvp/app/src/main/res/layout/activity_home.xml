@@ -39,7 +39,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Matérias"
+            android:text="Matérias de hoje"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -47,8 +47,15 @@
             android:id="@+id/txtVerTodas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="VER TODAS"
+            android:text="@string/ver_todas"
             android:textColor="#673AB7"
             android:textStyle="bold" />
+
     </LinearLayout>
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </LinearLayout>

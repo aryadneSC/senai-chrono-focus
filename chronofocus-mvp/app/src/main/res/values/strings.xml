@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">chronofocus(mvp)</string>
+    <string name="app_name">chronofocus-mvp</string>
     <string name="ola_usuario">Olá, Usuário!</string>
     <string name="sessao_hoje">Sessão de Hoje</string>
     <string name="btn_iniciar">INICIAR</string>
@@ -10,4 +10,5 @@
     <string name="chrono_focus">Chrono Focus</string>
     <string name="entrar">ENTRAR</string>
     <string name="digite_seu_nome">Digite seu nome...</string>
+    <string name="materias_de_hoje">Matérias de hoje</string>
 </resources>

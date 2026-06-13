@@ -21,8 +21,8 @@ public class MateriaRepository  {
     public MateriaRepository(MateriaDao db){
         this.db = db;
     }
-    public LiveData<List<Materia>> listarMaterias(int limit, DaysWeek day){
-        return db.listarMaterias(limit, day);
+    public LiveData<List<Materia>> listarMaterias(DaysWeek day){
+        return db.listarMaterias(day);
     }
     public LiveData<List<Materia>> listarMaterias(){
         return db.listarMaterias();
@@ -43,6 +43,10 @@ public class MateriaRepository  {
                 db.deleteMateria(materia);
             }
         });
+    }
+
+    public void updateMateria(){
+
     }
 
 }

@@ -9,6 +9,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Dao
@@ -22,8 +23,17 @@ public interface MateriaDao {
     @Query("SELECT * FROM Materia")
     public LiveData<List<Materia>> listarMaterias();
 
-    @Query("SELECT * FROM Materia WHERE day = :day LIMIT:limit")
-    public LiveData<List<Materia>> listarMaterias(int limit, DaysWeek day);
+    @Query("SELECT * FROM Materia WHERE day = :day")
+    public LiveData<List<Materia>> listarMaterias(DaysWeek day);
+
+    @Query("UPDATE Materia SET ultimo_dia_estudado = :date WHERE id = :id")
+    public void updateMateria(int id, String date);
+
+    @Query("UPDATE Materia SET nome = :name WHERE id = :id")
+    public void updateMateria(String name, int id);
+
+    @Query("UPDATE Materia SET day = :day WHERE id = :id")
+    public void updateMateria(DaysWeek day, int id);
 
 
 }

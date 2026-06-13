@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
 import com.example.chronofocus.data.MateriaDataBase;
+import com.example.chronofocus.model.DaysWeek;
 import com.example.chronofocus.model.Materia;
 import com.example.chronofocus.repository.MateriaRepository;
 
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class HomeViewModel extends ViewModel {
     private final MateriaRepository db;
-
+    private LiveData<List<Materia>> session;
     public  HomeViewModel(MateriaRepository materiaRepository){
         this.db = materiaRepository;
     }
@@ -28,13 +29,15 @@ public class HomeViewModel extends ViewModel {
                assert app != null;
                MateriaDataBase materiaDataBase = MateriaDataBase.getInstance(app);
                MateriaRepository repository = new MateriaRepository(materiaDataBase.materiaDao());
+
                return new HomeViewModel(repository);
     });
 
-    public LiveData<List<Materia>> getAllMaterias(){
-        return db.listarMaterias();
+    public void addMateriasDoDia(DaysWeek day){
+        session = db.listarMaterias(day);
     }
 
-
-
+    public LiveData<List<Materia>> getMateriasDoDia(){
+          return session;
+    }
 }

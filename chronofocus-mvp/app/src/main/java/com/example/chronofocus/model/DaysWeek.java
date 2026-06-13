@@ -2,24 +2,38 @@ package com.example.chronofocus.model;
 
 import android.os.Build;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.ZoneId;
 
 public enum DaysWeek {
-    SUNDAY,
-    MONDAY,
-    TUESDAY,
-    WEDNESDAY,
-    THURDAY,
-    FRIDAY,
-    SATURDAY;
+    SUNDAY( "Domingo"),
+    MONDAY ("Segunda"),
+    TUESDAY( "Terça"),
+    WEDNESDAY( "Quarta"),
+    THURSDAY( "Quinta"),
+    FRIDAY( "Sexta"),
+    SATURDAY( "Sábado");
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static DaysWeek whoIsDay(){
-        DayOfWeek day = LocalDate.now().getDayOfWeek();
-        return DaysWeek.values()[day.getValue() - 1];
+
+    private final String name;
+    DaysWeek(String name){
+        this.name = name;
+    }
+
+    public static DaysWeek getCurrentDay(){
+        String date = LocalDate.now(ZoneId.systemDefault()).getDayOfWeek().toString();
+        return DaysWeek.valueOf(date);
+    }
+
+
+    @NonNull
+    @Override
+    public String toString(){
+        return name;
     }
 
 }
