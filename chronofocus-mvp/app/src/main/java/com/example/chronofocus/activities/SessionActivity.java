@@ -46,8 +46,8 @@ public class SessionActivity extends AppCompatActivity {
             instancia até que o countdown chegue a zero, causando
          um memory leak e sérios travamentos na MainThread(UI Thread) em situações de multiplos cliques.*/
 
-        // TEMPORARIO
-        Materia proximaMateria = viewModel.getSessionTimer();
+        // TEMPORARIO dessa forma não tem persistencia, vou implementar SessionTimer na view
+        Materia proximaMateria = viewModel.getNextMateria();
         Button buttonStart = binding.btnStart;
         Button buttonFinish = binding.btnFinish;
         Button buttonPause = binding.btnPause;
@@ -62,7 +62,6 @@ public class SessionActivity extends AppCompatActivity {
             buttonStart.setVisibility(View.GONE);
             buttonFinish.setVisibility(View.VISIBLE);
             buttonPause.setVisibility(View.VISIBLE);
-
 
            new CountDownTimer(time, 1) {
                 @Override
