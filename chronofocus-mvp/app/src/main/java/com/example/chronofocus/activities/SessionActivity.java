@@ -24,6 +24,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class SessionActivity extends AppCompatActivity {
     private ActivityTimerBinding binding;
@@ -44,20 +45,17 @@ public class SessionActivity extends AppCompatActivity {
 
         // TESTES (NÃO É FINAL)
 
-
-
         Materia proximaMateria = new Materia("Russo",
                 TimerUtil.convertToMillis(10),
                 DaysWeek.FRIDAY, 3);
 
-
+        long time = proximaMateria.getBaseTime();
         binding.button.setOnClickListener(l -> {
-           new CountDownTimer(proximaMateria.getBaseTime(), 1) {
-
+           new CountDownTimer(time, 1) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-                    Time time = new Time(millisUntilFinished);
-                    binding.textViewTimer.setText(String.format("%s", time.toString()));
+                    // talvez adicionar titulo da materia em cima
+                    binding.textViewTimer.setText(TimerUtil.millisToFormattedTimeString(millisUntilFinished));
                 }
 
                 @Override
@@ -65,13 +63,11 @@ public class SessionActivity extends AppCompatActivity {
                     // SessionViewModel.GetNextMateria(),
                     // se conseguir, prossegue, se não, finish().
                     // GetNextMateria() chama SessionManager
+                    //
+                    // Materia materia = SessionViewModel.GetNextMateria()
+                    // time = materia.getBaseTime();
                 }
             }.start();
-
-
-
-
         });
-
     }
 }
