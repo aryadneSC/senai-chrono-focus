@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
+import com.example.chronofocus.ChronoFocusApp;
 import com.example.chronofocus.data.ChronoDataBase;
 import com.example.chronofocus.model.DaysWeek;
 import com.example.chronofocus.model.Materia;
@@ -61,12 +62,12 @@ public class SessionViewModel extends ViewModel {
 
     public static final ViewModelInitializer<SessionViewModel> initializer = new ViewModelInitializer<>(SessionViewModel.class,
             creationExtras  -> {
-                Application app = creationExtras.get(APPLICATION_KEY);
+                ChronoFocusApp app = (ChronoFocusApp) creationExtras.get(APPLICATION_KEY);
                 assert app != null;
                 ChronoDataBase db = ChronoDataBase.getInstance(app);
-                SessionTimerRepository _timerRepo = new SessionTimerRepository(db.sessionTimerDao());
+                SessionTimerRepository _timerRepo = app.getsRepo();
                 // DISCLAIMER: Provisório enquanto não tem a factory ainda
-                MateriaRepository _materiaRepo = new MateriaRepository(db.materiaDao());
+                MateriaRepository _materiaRepo = app.getRepo();
                 return new SessionViewModel(_timerRepo, _materiaRepo);
             }
     );
