@@ -15,20 +15,13 @@ import com.example.chronofocus.R;
 import com.example.chronofocus.databinding.ActivityTimerBinding;
 import com.example.chronofocus.model.DaysWeek;
 import com.example.chronofocus.model.Materia;
-import com.example.chronofocus.model.SessionTimer;
-import com.example.chronofocus.model.Status;
-import com.example.chronofocus.utils.TimerUtil;
+import com.example.chronofocus.utils.TimerUtils;
 import com.example.chronofocus.viewmodels.SessionViewModel;
-
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class SessionActivity extends AppCompatActivity {
     private ActivityTimerBinding binding;
     private SessionViewModel viewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,9 +38,13 @@ public class SessionActivity extends AppCompatActivity {
 
         // TESTES (NÃO É FINAL)
 
-        Materia proximaMateria = new Materia("Russo",
-                TimerUtil.convertToMillis(10),
-                DaysWeek.FRIDAY, 3);
+        /* DISCLAIMER (SÉRIO, MAS IGNORE SE JA ESTÁ CIENTE): Se o usuário clicar multiplas vezes no mesmo botão,
+            diversas instnacias de countDownTimer serão criadas.
+            O cerne do problema é que Garbage Collector não executará um free() na
+            instancia até que o countdown chegue a zero, causando
+         um memory leak e sérios travamentos na MainThread(UI Thread) em situações de multiplos cliques.*/
+
+        viewModel.getNextMateria();
 
         long time = proximaMateria.getBaseTime();
         binding.button.setOnClickListener(l -> {
@@ -55,7 +52,7 @@ public class SessionActivity extends AppCompatActivity {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     // talvez adicionar titulo da materia em cima
-                    binding.textViewTimer.setText(TimerUtil.millisToFormattedTimeString(millisUntilFinished));
+                    binding.textViewTimer.setText(TimerUtils.millisToFormattedTimeString(millisUntilFinished));
                 }
 
                 @Override

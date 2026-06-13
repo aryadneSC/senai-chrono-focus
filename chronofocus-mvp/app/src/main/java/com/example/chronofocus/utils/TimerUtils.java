@@ -2,7 +2,7 @@ package com.example.chronofocus.utils;
 
 import java.sql.Time;
 
-public class TimerUtil { public static long convertToMillis(int seconds) {
+public class TimerUtils { public static long convertToMillis(int seconds) {
         return (long)seconds * 1000;
     }
 

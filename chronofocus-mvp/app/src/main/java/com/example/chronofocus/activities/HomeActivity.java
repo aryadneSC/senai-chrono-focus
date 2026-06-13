@@ -50,8 +50,8 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         binding.btnIniciarSessao.setOnClickListener(v -> {
-             Intent intent = new Intent(HomeActivity.this, SessionActivity.class);
-             startActivity(intent);
+            Intent intent = new Intent(HomeActivity.this, SessionActivity.class);
+            startActivity(intent);
         });
 
     }
