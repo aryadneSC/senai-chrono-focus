@@ -7,8 +7,9 @@ import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import com.example.chronofocus.utils.DataUtils;
-
 import java.text.SimpleDateFormat;
+
+import java.util.ArrayList;
 import java.util.Locale;
 
 @Entity(indices = {@Index(value = {"nome"}, unique = true)})
@@ -21,12 +22,12 @@ public class Materia  {
 	@ColumnInfo(name = "base_time")
 	private long baseTime;
 	@ColumnInfo(name = "day")
-	private DaysWeek day;
+	private ArrayList<DaysWeek> day;
 	@ColumnInfo(name = "priority")
 	private int priority;
 	@ColumnInfo(name = "ultimo_dia_estudado")
 	private String ultimoDiaEstudado;
-	public Materia(String nome, long baseTime, DaysWeek day, int priority){
+	public Materia(String nome, long baseTime, ArrayList<DaysWeek> day, int priority){
 		this.nome = nome;
 		this.baseTime = baseTime;
 		this.day = day;
@@ -71,11 +72,11 @@ public class Materia  {
 		this.baseTime = baseTime;
 	}
 
-	public void setDay(DaysWeek day) {
+	public void setDay(ArrayList<DaysWeek> day) {
 		this.day = day;
 	}
 
-	public DaysWeek getDay() {return day;}
+	public ArrayList<DaysWeek> getDay() {return day;}
 
 	public String getUltimoDiaEstudado() {
 		return ultimoDiaEstudado;

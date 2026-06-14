@@ -36,8 +36,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(view);
         viewModel = new ViewModelProvider(this, ViewModelProvider.Factory.from(HomeViewModel.inicializer)).get(HomeViewModel.class);
         recuperarNomeUsuario();
-        viewModel.addMateriasDoDia(DaysWeek.getCurrentDay(), DataUtils.returnActualDate());
-        Toast.makeText(this, String.format("hoje é %s data: %s", DaysWeek.getCurrentDay(), DataUtils.returnActualDate()), Toast.LENGTH_LONG).show();
+        viewModel.addMateriasDoDia(DaysWeek.getCurrentDay().name(), DataUtils.returnActualDate());
 
         LiveData<List<Materia>> materias = viewModel.getMateriasDoDia();
         materias.observe(this, o ->{

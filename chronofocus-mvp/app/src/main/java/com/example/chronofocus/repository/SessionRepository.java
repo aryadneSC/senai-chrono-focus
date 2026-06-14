@@ -19,7 +19,7 @@ public class SessionRepository {
         this.materiaDao = materiaDao;
 
     }
-    public void carregarMateriaDoDia(DaysWeek currentDay, String currentData){
+    public void carregarMateriasDoDia(String currentDay, String currentData){
         materiasDoDia = materiaDao.listarMaterias(currentDay, currentData);
     }
     public void updateUltimoDiaEstudado(int id, String date){
@@ -30,6 +30,9 @@ public class SessionRepository {
             }
         });
     }
+
+
+
 
     public LiveData<List<Materia>> getMateriasDoDia(){
         return materiasDoDia;

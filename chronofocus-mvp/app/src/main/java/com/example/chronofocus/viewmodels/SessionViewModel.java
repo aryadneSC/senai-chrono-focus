@@ -30,33 +30,32 @@ public class SessionViewModel extends ViewModel {
         this.timerRepo = timerRepo;
         this.materiaRepo = materiaRepo;
         pendingTimers = new LinkedList<>();
+
+                //Obtemos as materias do dia via repo
+        //        Materia materia1 = new Materia("Russo",
+        //                TimerUtils.convertToMillis(10),
+        //                DaysWeek.FRIDAY, 3);
         //
+        //        Materia materia2 = new Materia("ingles",
+        //                TimerUtils.convertToMillis(10),
+        //                DaysWeek.FRIDAY, 2);
+        //
+        //        Materia materia3 = new Materia("Português",
+        //                TimerUtils.convertToMillis(10),
+        //                DaysWeek.FRIDAY, 1);
+        //
+        //        List<Materia> materias = new ArrayList<>();
+        //
+        //        materias.add(materia1);
+        //        materias.add(materia2);
+        //        materias.add(materia3);
 
-        //temporario apenas para teste
-        Materia materia1 = new Materia("Russo",
-                TimerUtils.convertToMillis(10),
-                DaysWeek.FRIDAY, 3);
-
-        Materia materia2 = new Materia("ingles",
-                TimerUtils.convertToMillis(10),
-                DaysWeek.FRIDAY, 2);
-
-        Materia materia3 = new Materia("Português",
-                TimerUtils.convertToMillis(10),
-                DaysWeek.FRIDAY, 1);
-
-        List<Materia> materias = new ArrayList<>();
-
-        materias.add(materia1);
-        materias.add(materia2);
-        materias.add(materia3);
-
-        //Prioridade decrescente
-        materias.sort(
-                Comparator.comparingInt(Materia::getPriority).reversed()
-        );
-
-        //var subjects = sessionRepo.getPriorityOrderedMaterias();
+        //        //Ordenamos por prioridade decrescente
+        //        materias.sort(
+        //                Comparator.comparingInt(Materia::getPriority).reversed()
+        //        );
+        //
+        //        sessionMaterias = new LinkedList<>(materias);
 
     }
 

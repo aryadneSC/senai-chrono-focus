@@ -5,9 +5,12 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
 import com.example.chronofocus.model.Materia;
 import com.example.chronofocus.model.SessionTimer;
+import com.example.chronofocus.utils.RoomTypeConverterUtils;
+
 
 
 @Database(entities = {Materia.class, SessionTimer.class}, version = 4)

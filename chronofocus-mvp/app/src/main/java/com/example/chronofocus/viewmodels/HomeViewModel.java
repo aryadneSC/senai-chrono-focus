@@ -39,8 +39,8 @@ public class HomeViewModel extends ViewModel {
                return new HomeViewModel(materiaRepository, sessionRepository);
     });
 
-    public void addMateriasDoDia(DaysWeek currentDay, String currentDate){
-        session.carregarMateriaDoDia(currentDay, currentDate);
+    public void addMateriasDoDia(String currentDay, String currentDate){
+        session.carregarMateriasDoDia(currentDay, currentDate);
     }
 
     public LiveData<List<Materia>> getMateriasDoDia(){
