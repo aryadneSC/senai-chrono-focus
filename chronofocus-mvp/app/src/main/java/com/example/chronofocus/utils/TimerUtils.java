@@ -13,6 +13,7 @@ public class TimerUtils { public static long convertToMillis(int seconds) {
 
     @SuppressLint("DefaultLocale")
     public static String millisToFormattedTimeString(long millis) {
+
         long seconds = millis / 1000;
         long minutes = seconds / 60;
         long hours = minutes / 60;
@@ -29,9 +30,6 @@ public class TimerUtils { public static long convertToMillis(int seconds) {
         } else {
             throw new IllegalArgumentException("At millisToFormattedTimeString(), millis was negative");
         }
-
-
-
     }
 
 }

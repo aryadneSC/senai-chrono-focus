@@ -20,7 +20,7 @@ public class ChronoFocusApp extends Application {
        super.onCreate();
        db = ChronoDataBase.getInstance(getApplicationContext());
        materiaRepo = new MateriaRepository(db.materiaDao());
-       timerRepo = new SessionTimerRepository(db.sessionTimerDao());
+       timerRepo = new SessionTimerRepository();
        sessionRepo = new SessionRepository(db.materiaDao());
    }
 
