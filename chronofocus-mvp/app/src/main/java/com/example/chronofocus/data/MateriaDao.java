@@ -23,7 +23,7 @@ public interface MateriaDao {
     @Query("SELECT * FROM Materia")
     public LiveData<List<Materia>> listarMaterias();
 
-    @Query("SELECT * FROM Materia WHERE day LIKE :day AND (ultimo_dia_estudado <> :date OR ultimo_dia_estudado IS NULL)")
+    @Query("SELECT * FROM Materia WHERE day LIKE :day AND (ultimo_dia_estudado <> :date OR ultimo_dia_estudado IS NULL) ORDER BY priority")
     public LiveData<List<Materia>> listarMaterias(String day, String date);
 
     @Query("UPDATE Materia SET ultimo_dia_estudado = :date WHERE id = :id")

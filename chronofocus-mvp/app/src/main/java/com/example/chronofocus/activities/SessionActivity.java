@@ -57,6 +57,7 @@ public class SessionActivity extends AppCompatActivity {
          um memory leak e sérios travamentos na MainThread(UI Thread) em situações de multiplos cliques.*/
 
         // TEMPORARIO dessa forma não tem persistencia, vou implementar SessionTimer na view
+
         ArrayList<DaysWeek> days = new ArrayList<>();
         days.add(DaysWeek.FRIDAY);
         Materia proximaMateria = new Materia("Português", 432131, days, 2);
@@ -68,7 +69,6 @@ public class SessionActivity extends AppCompatActivity {
 
         binding.tvMateria.setText(proximaMateria.getNome());
         binding.tvTimer.setText(TimerUtils.millisToFormattedTimeString(time));
-        Toast.makeText(this, "Por favor, digite seu nome!", Toast.LENGTH_SHORT).show();
 
         btnStart.setOnClickListener(l -> {
             btnStart.setVisibility(View.GONE);
@@ -91,5 +91,6 @@ public class SessionActivity extends AppCompatActivity {
 
             }.start();
         });
+
     }
 }

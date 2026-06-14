@@ -14,7 +14,9 @@ import com.example.chronofocus.utils.RoomTypeConverterUtils;
 
 
 @Database(entities = {Materia.class, SessionTimer.class}, version = 4)
-@TypeConverters(RoomTypeConverterUtils.class)
+
+@TypeConverters({RoomTypeConverterUtils.class})
+
 public abstract class ChronoDataBase extends RoomDatabase {
     private static ChronoDataBase instance;
     public abstract MateriaDao materiaDao();
@@ -22,7 +24,6 @@ public abstract class ChronoDataBase extends RoomDatabase {
     public static ChronoDataBase getInstance(Context context){
         if (instance == null)
             instance = Room.databaseBuilder(context.getApplicationContext(), ChronoDataBase.class, "dados-usuario").build();
-
         return instance;
     }
 }

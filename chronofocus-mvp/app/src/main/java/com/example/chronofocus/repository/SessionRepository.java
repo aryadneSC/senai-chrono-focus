@@ -20,7 +20,7 @@ public class SessionRepository {
 
     }
     public void carregarMateriasDoDia(String currentDay, String currentData){
-        materiasDoDia = materiaDao.listarMaterias(currentDay, currentData);
+        materiasDoDia = materiaDao.listarMaterias("%" + currentDay + "%", currentData);
     }
     public void updateUltimoDiaEstudado(int id, String date){
         ThreadsManager.startTask(new Runnable() {
@@ -30,9 +30,6 @@ public class SessionRepository {
             }
         });
     }
-
-
-
 
     public LiveData<List<Materia>> getMateriasDoDia(){
         return materiasDoDia;

@@ -35,7 +35,9 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-
+        SharedPreferences prefs = getSharedPreferences("ChronoPrefs", Context.MODE_PRIVATE);
+        if(prefs.contains("usuario_nome"))
+            nextView();
 
 
         binding.btnLogin.setOnClickListener(v -> {
@@ -44,17 +46,17 @@ public class LoginActivity extends AppCompatActivity {
             if (nome.isEmpty()) {
                 Toast.makeText(this, "Por favor, digite seu nome!", Toast.LENGTH_SHORT).show();
             } else {
-
-                SharedPreferences prefs = getSharedPreferences("ChronoPrefs", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
-
-                editor.putString("usuario_nome", nome);
-                editor.apply();
-
-                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString("usuario_nome", nome);
+                    editor.apply();
+                    nextView();
             }
         });
+        }
+
+        private void nextView(){
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
