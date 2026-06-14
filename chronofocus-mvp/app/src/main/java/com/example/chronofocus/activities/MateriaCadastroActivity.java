@@ -46,6 +46,7 @@ public class MateriaCadastroActivity extends AppCompatActivity {
             return insets;
         });
 
+        chipSetText(DaysWeek.values(), chipExtractor(binding.chipGroupDias));
 
         binding.btn2.setOnClickListener(v -> {
             String nome = binding.txtbx1.getText().toString();
@@ -63,6 +64,7 @@ public class MateriaCadastroActivity extends AppCompatActivity {
 
 
     }
+
 
     private ArrayList<DaysWeek> chipTextExtractor(List<Chip> chips){
         ArrayList<DaysWeek> days = new ArrayList<>();
@@ -85,17 +87,27 @@ public class MateriaCadastroActivity extends AppCompatActivity {
         return  chips;
     }
 
-    private List<Chip> chipExtractor(){
-        ChipGroup chipGroup = binding.chipGroupDias;
+    private List<Chip> chipExtractor(ChipGroup chipGroup){
         View objExtracted;
-        int chipGroupLenght =  chipGroup.getChildCount();
+        int chipGroupLength =  chipGroup.getChildCount();
         ArrayList<Chip> chipList = new ArrayList<>();
-        for (int i = 0; i < chipGroupLenght; i++){
+
+        for (int i = 0; i < chipGroupLength; i++){
             objExtracted = chipGroup.getChildAt(i);
             if (objExtracted instanceof Chip){
                 chipList.add((Chip) objExtracted);
             }
         }
+
        return chipList;
+    }
+
+
+    private void chipSetText(DaysWeek[] days, List<Chip> chipList){
+        if(chipList == null || chipList.isEmpty() || chipList.size() < days.length)
+            return;
+        for(int i = 0; i < days.length; i++){
+            chipList.get(i).setText(days[i].toString());
+        }
     }
 }

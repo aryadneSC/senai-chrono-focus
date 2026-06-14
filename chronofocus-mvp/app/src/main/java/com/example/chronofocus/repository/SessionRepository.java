@@ -30,7 +30,7 @@ public class SessionRepository {
             }
         });
     }
-    
+
     public LiveData<List<Materia>> getMateriasDoDia(){
         return materiasDoDia;
     }
