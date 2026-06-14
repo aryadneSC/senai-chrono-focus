@@ -37,30 +37,30 @@ public class SessionViewModel extends ViewModel {
         // DISCLAIMER: provisorio, o ideal é obter por consulta filtrada pelo MateriaRepository
 
         //Obtemos as materias do dia via repo
-        Materia materia1 = new Materia("Russo",
-                TimerUtils.convertToMillis(10),
-                DaysWeek.FRIDAY, 3);
+//        Materia materia1 = new Materia("Russo",
+//                TimerUtils.convertToMillis(10),
+//                DaysWeek.FRIDAY, 3);
+//
+//        Materia materia2 = new Materia("ingles",
+//                TimerUtils.convertToMillis(10),
+//                DaysWeek.FRIDAY, 2);
+//
+//        Materia materia3 = new Materia("Português",
+//                TimerUtils.convertToMillis(10),
+//                DaysWeek.FRIDAY, 1);
+//
+//        List<Materia> materias = new ArrayList<>();
+//
+//        materias.add(materia1);
+//        materias.add(materia2);
+//        materias.add(materia3);
 
-        Materia materia2 = new Materia("ingles",
-                TimerUtils.convertToMillis(10),
-                DaysWeek.FRIDAY, 2);
-
-        Materia materia3 = new Materia("Português",
-                TimerUtils.convertToMillis(10),
-                DaysWeek.FRIDAY, 1);
-
-        List<Materia> materias = new ArrayList<>();
-
-        materias.add(materia1);
-        materias.add(materia2);
-        materias.add(materia3);
-
-        //Ordenamos por prioridade decrescente
-        materias.sort(
-                Comparator.comparingInt(Materia::getPriority).reversed()
-        );
-
-        sessionMaterias = new LinkedList<>(materias);
+//        //Ordenamos por prioridade decrescente
+//        materias.sort(
+//                Comparator.comparingInt(Materia::getPriority).reversed()
+//        );
+//
+//        sessionMaterias = new LinkedList<>(materias);
     }
 
     public static final ViewModelInitializer<SessionViewModel> initializer = new ViewModelInitializer<>(SessionViewModel.class,

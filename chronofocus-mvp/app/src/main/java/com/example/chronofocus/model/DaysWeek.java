@@ -3,6 +3,7 @@ package com.example.chronofocus.model;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import java.time.DayOfWeek;
@@ -29,6 +30,32 @@ public enum DaysWeek {
         return DaysWeek.valueOf(date);
     }
 
+    @Nullable
+    public static DaysWeek stringToEnum(String txt){
+        switch (txt){
+            case "Segunda":
+                return MONDAY;
+            case "Terça":
+                return TUESDAY;
+            case "Quarta":
+                return WEDNESDAY;
+            case "Quinta":
+                return THURSDAY;
+            case "Sexta":
+                return FRIDAY;
+            case "Sábado":
+                return SATURDAY;
+            case "Domingo":
+                return SUNDAY;
+            default:
+                return null;
+        }
+    }
+
+    @Nullable
+    public static DaysWeek stringToEnum(CharSequence charSequence){
+        return stringToEnum(charSequence.toString());
+    }
 
     @NonNull
     @Override
