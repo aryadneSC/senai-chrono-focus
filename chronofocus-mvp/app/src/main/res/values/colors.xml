@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="color_background">#FAFAFA</color>
+    <color name="color_surface">#F0EFED</color>
+    <color name="color_title">#1A1A1A</color>
+    <color name="color_body">#4A4A4A</color>
+    <color name="color_button_primary">#2C2C2C</color>
+    <color name="color_button_primary_text">#F5F5F5</color>
+    <color name="color_button_secondary">#FAFAFA</color>
+    <color name="color_button_secondary_text">#2C2C2C</color>
+    <color name="color_border">#DDDBD8</color>
+    <color name="color_timer_circle">#E8E6E3</color>
+    <color name="color_input_bg">#F5F4F2</color>
 </resources>
