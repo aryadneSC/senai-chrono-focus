@@ -9,6 +9,6 @@
     <color name="color_button_secondary">#1F2023</color>
     <color name="color_button_secondary_text">#EFEFEF</color>
     <color name="color_border">#2E3035</color>
-    <color name="color_timer_circle">#252729</color>
+    <color name="color_content_body">#252729</color>
     <color name="color_input_bg">#1A1C1F</color>
 </resources>

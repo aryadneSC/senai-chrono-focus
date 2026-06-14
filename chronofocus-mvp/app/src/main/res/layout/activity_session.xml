@@ -1,120 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.SubjectListActivity">
+    android:orientation="vertical"
+    tools:context=".activities.SessionActivity">
 
 
-    <TextView
-        android:id="@+id/tvMateria"
-        style="@style/TextStyle.Subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="172dp"
-        android:text="@string/mat_ria"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="310dp"
-        android:layout_height="298dp"
-        android:contentDescription="@string/container_de_tempo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/circulo_do_timer"
-            android:src="@drawable/timer_circle"
-            app:tint="@color/color_timer_circle" />
-
-        <TextView
-            android:id="@+id/tvTimer"
-            style="@style/TextStyle.Timer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/_00_00_00"
-            android:textSize="48sp" />
-
-    </FrameLayout>
-
-    <com.google.android.flexbox.FlexboxLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="132dp"
-        app:flexWrap="wrap"
-        app:justifyContent="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
-
-        <Button
-            style="@style/ButtonStyle.Secondary"
-            android:id="@+id/btn_pause"
-            android:layout_width="@dimen/min_button_width"
-            android:layout_height="@dimen/min_button_height"
-            android:text="@string/pausar"
-            android:layout_marginHorizontal="7sp"
-            android:visibility="gone" />
-
-        <Button
-            style="@style/ButtonStyle.Primary"
-            android:id="@+id/btn_start"
-            android:layout_width="@dimen/min_button_width"
-            android:layout_height="@dimen/min_button_height"
-            android:layout_marginHorizontal="7sp"
-            android:text="@string/iniciar" />
-
-        <Button
-            style="@style/ButtonStyle.Primary"
-            android:id="@+id/btn_finish"
-            android:layout_width="@dimen/min_button_width"
-            android:layout_height="@dimen/min_button_height"
-            android:text="@string/finalizar"
-            android:layout_marginHorizontal="7sp"
-            android:visibility="gone" />
-
-    </com.google.android.flexbox.FlexboxLayout>
+        android:paddingHorizontal="@dimen/container_padding"
+        android:paddingTop="@dimen/container_padding"
+        style="@style/ButtonStyle.Primary">
 
 
-    <ImageButton
-        android:id="@+id/btnVoltar"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="24dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_arrow_back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.038"
-        app:tint="@color/color_title" />
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
 
-    <TextView
-        android:id="@+id/tvTitle"
-        style="@style/TextStyle.BigTitle"
-        android:layout_width="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.038"
+            app:tint="@color/color_title" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+
+            style="@style/TextStyle.BigTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.038" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/containerMateriaTimer"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.038" />
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/container_padding">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvMateria"
+            style="@style/TextStyle.Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mat_ria" />
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="310dp"
+            android:layout_height="298dp"
+            android:contentDescription="@string/container_de_tempo">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/circulo_do_timer"
+                android:src="@drawable/timer_circle"
+                app:tint="@color/color_content_body" />
+
+            <TextView
+                android:id="@+id/tvTimer"
+                style="@style/TextStyle.Timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/_00_00_00"
+                android:textSize="48sp" />
+
+        </FrameLayout>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/flTimerButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:flexWrap="wrap"
+            app:justifyContent="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNextSubject"
+            app:layout_constraintVertical_bias="0.0">
+
+            <Button
+                android:id="@+id/btn_pause"
+                style="@style/ButtonStyle.Secondary"
+                android:layout_width="@dimen/min_button_width"
+                android:layout_height="@dimen/min_button_height"
+                android:layout_marginHorizontal="7sp"
+                android:text="@string/pausar"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_start"
+                style="@style/ButtonStyle.Primary"
+                android:layout_width="@dimen/min_button_width"
+                android:layout_height="@dimen/min_button_height"
+                android:layout_marginHorizontal="7sp"
+                android:text="@string/iniciar" />
+
+            <Button
+                android:id="@+id/btn_finish"
+                style="@style/ButtonStyle.Primary"
+                android:layout_width="@dimen/min_button_width"
+                android:layout_height="@dimen/min_button_height"
+                android:layout_marginHorizontal="7sp"
+                android:text="@string/finalizar"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_resume"
+                style="@style/ButtonStyle.Primary"
+                android:layout_width="@dimen/min_button_width"
+                android:layout_height="@dimen/min_button_height"
+                android:layout_marginHorizontal="7sp"
+                android:text="@string/retomar"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_restart"
+                style="@style/ButtonStyle.Primary"
+                android:layout_width="@dimen/min_button_width"
+                android:layout_height="@dimen/min_button_height"
+                android:layout_marginHorizontal="7sp"
+                android:text="@string/reiniciar"
+                android:visibility="gone" />
+
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_next_materia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        app:justifyContent="center"
+        android:padding="@dimen/container_padding">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_next_materia_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            >
+
+            <TextView
+                android:id="@+id/tvNextSubject"
+                style="@style/TextStyle.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="@string/pr_xima"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_next_materia"
+            style="@style/Content.Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_content_body" >
+
+            <TextView
+                android:id="@+id/tvMateria2"
+                style="@style/TextStyle.Body"
+                android:layout_weight="2"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/body_padding"
+                android:paddingVertical="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mat_ria" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_next_materia_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btn_nextMateria"
+                style="@style/ButtonStyle.PrimaryTinyCorner"
+                android:layout_width="@dimen/min_button_width"
+                android:layout_height="match_parent"
+                android:text="Iniciar"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </Button>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

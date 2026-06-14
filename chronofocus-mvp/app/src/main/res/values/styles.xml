@@ -3,6 +3,7 @@
 
     <style name="TextStyle" />
     <style name="ButtonStyle" />
+    <style name="Content" />
 
     <style name="TextStyle.Base">
         <item name="android:fontFamily">sans-serif-condensed</item>
@@ -51,6 +52,16 @@
         <item name="android:textColor">@color/color_button_primary_text</item>
     </style>
 
+    <style name="ButtonStyle.PrimaryTinyCorner">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:backgroundTint">@color/color_button_primary</item>
+        <item name="android:textColor">@color/color_button_primary_text</item>
+    </style>
+
     <style name="ButtonStyle.Secondary">
         <item name="android:fontFamily">sans-serif-condensed</item>
         <item name="android:textSize">18sp</item>
@@ -60,6 +71,12 @@
         <item name="android:textColor">@color/color_button_secondary_text</item>
         <item name="strokeWidth">1dp</item>
         <item name="strokeColor">@color/color_border</item>
+    </style>
+
+    <style name="Content.Body">
+        <item name="android:backgroundTint">@color/color_content_body</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="strokeColor">@color/color_button_primary</item>
     </style>
 
 </resources>

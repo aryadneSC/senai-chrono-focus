@@ -24,4 +24,7 @@
     <string name="login">Sessão</string>
     <string name="materias">Matérias</string>
     <string name="criando_materia">Criando Matéria</string>
+    <string name="retomar">Retomar</string>
+    <string name="reiniciar">Reiniciar</string>
+    <string name="pr_xima">Próxima</string>
 </resources>
