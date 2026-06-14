@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData;
 import com.example.chronofocus.data.MateriaDao;
 import com.example.chronofocus.model.DaysWeek;
 import com.example.chronofocus.model.Materia;
+import com.example.chronofocus.utils.DataUtils;
 import com.example.chronofocus.utils.ThreadsManager;
 
 import java.util.List;
@@ -33,7 +34,4 @@ public class SessionRepository {
     public LiveData<List<Materia>> getMateriasDoDia(){
         return materiasDoDia;
     }
-
-
-
 }

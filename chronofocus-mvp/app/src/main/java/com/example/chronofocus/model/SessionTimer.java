@@ -2,40 +2,35 @@ package com.example.chronofocus.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.Index;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverter;
-
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class SessionTimer {
     @PrimaryKey (autoGenerate = true)
     @ColumnInfo(name = "session_id")
     private int sessionID;
-    @ColumnInfo(name = "current_materia_id")
-    private int currentMateriaID;
-    @ColumnInfo(name = "current_time")
-    private long currentTime;
+    @ColumnInfo(name = "materia_id")
+    private int materiaID;
+    @ColumnInfo(name = "base_time")
+    private long baseTime;
     @ColumnInfo(name = "status")
     private Status status;
-    @ColumnInfo(name = "start_time_stamp")
-    private long startTimestamp;
-    @ColumnInfo(name = "end_time_stamp")
-    private long endTimestamp = -1;
 
-    public SessionTimer(int currentMateriaID, long currentTime, long startTimestamp, Status status) {
-        this.currentMateriaID = currentMateriaID;
-        this.currentTime = currentTime;
-        this.startTimestamp = startTimestamp;
+    @ColumnInfo(name = "ended_at")
+    private long endedAt;
+
+    @ColumnInfo(name = "started_at")
+    private long startedAt = -1;
+
+    public SessionTimer(int materiaID, long baseTime, Status status) {
+        this.materiaID = materiaID;
+        this.baseTime = baseTime;
         this.status = status;
     }
 
-    public long getStartTimestamp() {
-        return startTimestamp;
+    public long getStartedAt() {
+        return startedAt;
     }
 
     public Status getStatus() {
@@ -46,20 +41,20 @@ public class SessionTimer {
         this.status = status;
     }
 
-    public long getCurrentTime() {
-        return currentTime;
+    public long getBaseTime() {
+        return baseTime;
     }
 
-    public int getCurrentMateriaID() {
-        return currentMateriaID;
+    public int getMateriaID() {
+        return materiaID;
     }
 
-    public long getEndTimestamp() {
-        return endTimestamp;
+    public long getEndedAt() {
+        return endedAt;
     }
 
-    public void setEndTimestamp(long endTimestamp) {
-        this.endTimestamp = endTimestamp;
+    public void setEndedAt(long endedAt) {
+        this.endedAt = endedAt;
     }
     public int getSessionID() {
         return sessionID;
@@ -69,24 +64,16 @@ public class SessionTimer {
         this.sessionID = sessionID;
     }
 
-    public void setCurrentMateriaID(int currentMateriaID) {
-        this.currentMateriaID = currentMateriaID;
+    public void setStartedAt(long startedAt) {
+        this.startedAt = startedAt;
     }
 
-    @TypeConverter //para converter o enum pra room
-    public static Status fromString(String value) {
-        return Status.valueOf(value);
+    public void setMateriaID(int materiaID) {
+        this.materiaID = materiaID;
     }
 
-    @TypeConverter
-    public static String fromStatus(Status status) {
-        return status.name();
-    }
-    public void setCurrentTime(long currentTime) {
-        this.currentTime = currentTime;
+    public void setBaseTime(long baseTime) {
+        this.baseTime = baseTime;
     }
 
-    public void setStartTimestamp(long startTimestamp) {
-        this.startTimestamp = startTimestamp;
-    }
 }

@@ -2,14 +2,10 @@ package com.example.chronofocus.viewmodels;
 
 import static androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY;
 
-import android.app.Application;
-
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
 import com.example.chronofocus.ChronoFocusApp;
-import com.example.chronofocus.data.ChronoDataBase;
 import com.example.chronofocus.model.DaysWeek;
 import com.example.chronofocus.model.Materia;
 import com.example.chronofocus.model.SessionTimer;
@@ -26,17 +22,17 @@ import java.util.Queue;
 
 public class SessionViewModel extends ViewModel {
     private final SessionTimerRepository timerRepo;
-    private final SessionRepository session;
+    private final SessionRepository sessionRepo;
     private final MateriaRepository materiaRepo;
-    private Queue<Materia> sessionMaterias;
-    public SessionViewModel(SessionTimerRepository timerRepo, MateriaRepository materiaRepo, SessionRepository session){
-        this.session = session;
+    private Queue<SessionTimer> pendingTimers;
+    public SessionViewModel(SessionTimerRepository timerRepo, MateriaRepository materiaRepo, SessionRepository sessionRepo){
+        this.sessionRepo = sessionRepo;
         this.timerRepo = timerRepo;
         this.materiaRepo = materiaRepo;
+        pendingTimers = new LinkedList<>();
         //
-        // DISCLAIMER: provisorio, o ideal é obter por consulta filtrada pelo MateriaRepository
 
-        //Obtemos as materias do dia via repo
+        //temporario apenas para teste
         Materia materia1 = new Materia("Russo",
                 TimerUtils.convertToMillis(10),
                 DaysWeek.FRIDAY, 3);
@@ -55,12 +51,13 @@ public class SessionViewModel extends ViewModel {
         materias.add(materia2);
         materias.add(materia3);
 
-        //Ordenamos por prioridade decrescente
+        //Prioridade decrescente
         materias.sort(
                 Comparator.comparingInt(Materia::getPriority).reversed()
         );
 
-        sessionMaterias = new LinkedList<>(materias);
+        //var subjects = sessionRepo.getPriorityOrderedMaterias();
+
     }
 
     public static final ViewModelInitializer<SessionViewModel> initializer = new ViewModelInitializer<>(SessionViewModel.class,
@@ -74,11 +71,6 @@ public class SessionViewModel extends ViewModel {
             }
     );
 
-//    private LiveData<List<Materia>> getOrderedDayMaterias(DaysWeek day) {
-//
-//        // -> return materiaRepo.listarMateriasOrdenadas(day)
-//        return materiaRepo.listarMaterias(day);
-//    }
 
     public void insertSessionTimer(SessionTimer sessionTimer){
         if (sessionTimer == null)
@@ -91,14 +83,10 @@ public class SessionViewModel extends ViewModel {
             return;
         timerRepo.deleteSessionTimer(sessionTimer);
     }
-    // SessionViewModel.GetNextMateria(),
-    // se conseguir, prossegue, se não, finish().
-    // GetNextMateria() chama SessionManager
-    //
-    // Materia materia = SessionViewModel.GetNextMateria()
-    // time = materia.getBaseTime();
-
+    /*
     public Materia getNextMateria() {
         return sessionMaterias.poll();
     }
+    */
+
 }

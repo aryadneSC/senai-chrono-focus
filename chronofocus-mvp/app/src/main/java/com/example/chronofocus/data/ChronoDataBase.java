@@ -10,7 +10,7 @@ import com.example.chronofocus.model.Materia;
 import com.example.chronofocus.model.SessionTimer;
 
 
-@Database(entities = {Materia.class, SessionTimer.class}, version = 3)
+@Database(entities = {Materia.class, SessionTimer.class}, version = 4)
 public abstract class ChronoDataBase extends RoomDatabase {
     private static ChronoDataBase instance;
     public abstract MateriaDao materiaDao();
@@ -21,6 +21,4 @@ public abstract class ChronoDataBase extends RoomDatabase {
 
         return instance;
     }
-
-
 }

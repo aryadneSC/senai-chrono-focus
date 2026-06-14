@@ -18,6 +18,6 @@ public interface SessionTimerDao {
     public void insertSessionTimer(SessionTimer sessionTimer);
     @Delete
     public void deleteSessionTimer(SessionTimer sessionTimer);
-    @Query("SELECT * FROM SessionTimer WHERE start_time_stamp BETWEEN :dayStart AND :dayEnd LIMIT 1")
-    public SessionTimer getSessionTimer(long dayStart, long dayEnd);
+    @Query("SELECT * FROM SessionTimer WHERE started_at BETWEEN :dayStart AND :dayEnd LIMIT 1")
+    public SessionTimer getSessionTimers(long dayStart, long dayEnd);
 }

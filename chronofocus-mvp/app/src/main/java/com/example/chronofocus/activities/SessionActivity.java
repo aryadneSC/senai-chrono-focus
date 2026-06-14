@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.chronofocus.R;
 import com.example.chronofocus.databinding.ActivitySessionBinding;
+import com.example.chronofocus.model.DaysWeek;
 import com.example.chronofocus.model.Materia;
 import com.example.chronofocus.model.SessionTimer;
 import com.example.chronofocus.utils.TimerUtils;
@@ -47,7 +48,7 @@ public class SessionActivity extends AppCompatActivity {
          um memory leak e sérios travamentos na MainThread(UI Thread) em situações de multiplos cliques.*/
 
         // TEMPORARIO dessa forma não tem persistencia, vou implementar SessionTimer na view
-        Materia proximaMateria = viewModel.getNextMateria();
+        Materia proximaMateria = new Materia("Teste", 30000, DaysWeek.FRIDAY, 2);
         Button buttonStart = binding.btnStart;
         Button buttonFinish = binding.btnFinish;
         Button buttonPause = binding.btnPause;

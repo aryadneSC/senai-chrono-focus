@@ -34,7 +34,4 @@ public interface MateriaDao {
 
     @Query("UPDATE Materia SET day = :day WHERE id = :id")
     public void updateMateria(DaysWeek day, int id);
-
-
-
 }

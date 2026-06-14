@@ -6,6 +6,9 @@ import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import com.example.chronofocus.utils.DataUtils;
+
+import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 @Entity(indices = {@Index(value = {"nome"}, unique = true)})
@@ -80,6 +83,10 @@ public class Materia  {
 
 	public void setUltimoDiaEstudado(String ultimoDiaEstudado) {
 		this.ultimoDiaEstudado = ultimoDiaEstudado;
+	}
+
+	public void atualizarUltimoDiaEstudado() {
+		this.ultimoDiaEstudado = DataUtils.returnActualDate();
 	}
 
 	@NonNull
