@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="116dp"
         android:layout_marginBottom="37dp"
-        android:text="TextView"
+        android:text="nome da matéria"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.009"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,10 +24,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="88dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Name"
+        android:hint="Nome da matéria"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -109,5 +109,41 @@
             android:checkable="true" />
 
     </com.google.android.material.chip.ChipGroup>
+
+
+    <EditText
+        android:id="@+id/editTextHoraInicio"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:hint="HH"
+        android:inputType="numberSigned"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/textViewSeparador" />
+
+    <TextView
+        android:id="@+id/textViewSeparador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=":"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/editTextHoraInicio"
+        app:layout_constraintEnd_toStartOf="@id/editTextHoraFim"
+        app:layout_constraintTop_toTopOf="@id/editTextHoraInicio"
+        app:layout_constraintBottom_toBottomOf="@id/editTextHoraInicio" />
+
+    <EditText
+        android:id="@+id/editTextHoraFim"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:hint="MM"
+        android:inputType="numberSigned"
+        app:layout_constraintStart_toEndOf="@id/textViewSeparador"
+        app:layout_constraintTop_toTopOf="@id/editTextHoraInicio" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

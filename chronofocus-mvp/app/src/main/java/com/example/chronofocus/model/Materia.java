@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-@Entity(indices = {@Index(value = {"nome"}, unique = true)})
+@Entity(indices = {@Index(value = {"id"})})
 public class Materia  {
    @PrimaryKey(autoGenerate = true)
    @ColumnInfo(name = "id")

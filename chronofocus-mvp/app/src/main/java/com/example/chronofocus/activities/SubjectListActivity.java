@@ -44,6 +44,7 @@ public class SubjectListActivity extends AppCompatActivity {
         }
 
 
+
         binding.btnVoltarMateria.setOnClickListener(v -> finish());
         binding.button2.setOnClickListener(v -> {
             Intent cadastroTela = new Intent(this, MateriaCadastroActivity.class);
