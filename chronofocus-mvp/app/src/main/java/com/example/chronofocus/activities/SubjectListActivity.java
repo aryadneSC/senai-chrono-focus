@@ -1,11 +1,16 @@
 package com.example.chronofocus.activities;
 
+import static android.app.PendingIntent.getActivity;
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -52,12 +57,20 @@ public class SubjectListActivity extends AppCompatActivity {
 
 
         });
+
         LiveData<List<Materia>> materias = viewModel.getAllMateria();
 
        materias.observe(this, o -> {
            myAdapter(materias.getValue());
        });
 
+       binding.listVMaterias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Materia materia = materias.getValue().get(position);
+                deleteButton(materia.getId());
+            }
+        });
 
 
     }
@@ -68,5 +81,18 @@ public class SubjectListActivity extends AppCompatActivity {
         binding.listVMaterias.setAdapter(adapter);
    }
 
+   private void deleteButton(int materiaId){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.msg_dlt_materia).setTitle(R.string.deletar_materia);
+        builder.setPositiveButton(R.string.sim_msg, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                 viewModel.deletarMateria(materiaId);
+            }
+        });
+       builder.setNegativeButton(R.string.nao_msg, null).show();
+
+
+   }
 
 }

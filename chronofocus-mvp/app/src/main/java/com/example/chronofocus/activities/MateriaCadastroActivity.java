@@ -56,7 +56,7 @@ public class MateriaCadastroActivity extends AppCompatActivity {
             if (nome.isEmpty() | dia.isEmpty()){
                 Toast.makeText(this, "Por favor, digite o nome da materia!", Toast.LENGTH_SHORT).show();
             } else {
-                viewModel.inserirMateria(new Materia(nome, 30, dia, 5));
+                viewModel.inserirMateria(new Materia(nome, 354540, dia, 5));
                 finish();
             }
         });

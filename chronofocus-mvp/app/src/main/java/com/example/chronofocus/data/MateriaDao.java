@@ -17,24 +17,19 @@ public interface MateriaDao {
     @Insert
     public void insertMateria(Materia materia);
 
-    @Delete
-    public void deleteMateria(Materia materia);
+    @Query("DELETE FROM Materia WHERE id = :id")
+    public void deleteMateria(int id);
 
     @Query("SELECT * FROM Materia")
     public LiveData<List<Materia>> listarMaterias();
 
-    @Query("SELECT * FROM Materia WHERE day LIKE :day AND (ultimo_dia_estudado <> :date OR ultimo_dia_estudado IS NULL) ORDER BY priority")
+    @Query("SELECT * FROM Materia WHERE day LIKE :day AND (ultimo_dia_estudado <> :date OR ultimo_dia_estudado IS NULL)")
     public LiveData<List<Materia>> listarMaterias(String day, String date);
 
     @Query("UPDATE Materia SET ultimo_dia_estudado = :date WHERE id = :id")
     public void updateMateria(int id, String date);
 
-    @Query("UPDATE Materia SET nome = :name WHERE id = :id")
-    public void updateMateria(String name, int id);
-
-    @Query("UPDATE Materia SET day = :day WHERE id = :id")
-    public void updateMateria(DaysWeek day, int id);
-
     @Query("SELECT * FROM Materia WHERE day LIKE :day AND (ultimo_dia_estudado <> :date OR ultimo_dia_estudado IS NULL) ORDER BY priority")
     public List<Materia> listMateriasForSession(String day, String date);
+
 }

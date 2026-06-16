@@ -35,5 +35,8 @@ public class SubjectListViewModel extends ViewModel {
     public LiveData<List<Materia>> getAllMateria() {
         return repo.listarMaterias();
     }
+    public void deletarMateria(int id){
+        repo.deletarMaterias(id);
+    }
 
 }

@@ -14,6 +14,10 @@
     <string name="pausar">Pausar</string>
     <string name="finalizar">Finalizar</string>
     <string name="iniciar">Iniciar</string>
+    <string name="deletar_materia">Deletar matéria</string>
+    <string name="msg_dlt_materia">Voce deseja mesmo deletar a matéria?</string>
+    <string name="sim_msg">Sim</string>
+    <string name="nao_msg">Não</string>
     <string name="mat_ria">Matéria</string>
     <string name="_00_00_00">00:00:00</string>
     <string name="title">Title</string>

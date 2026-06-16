@@ -28,11 +28,11 @@ public class MateriaRepository  {
             }
         });
     }
-    public void deletarMaterias(Materia materia){
+    public void deletarMaterias(int id){
         ThreadsManager.startTask(new Runnable() {
             @Override
             public void run() {
-                db.deleteMateria(materia);
+                db.deleteMateria(id);
             }
         });
     }
