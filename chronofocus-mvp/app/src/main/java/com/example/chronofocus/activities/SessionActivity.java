@@ -20,6 +20,8 @@ import com.example.chronofocus.model.SessionStatus;
 import com.example.chronofocus.utils.TimerUtils;
 import com.example.chronofocus.viewmodels.SessionViewModel;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class SessionActivity extends AppCompatActivity {
     private ActivitySessionBinding binding;
     private SessionViewModel viewModel;
@@ -45,9 +47,14 @@ public class SessionActivity extends AppCompatActivity {
         changeButtonsVisibility(SessionStatus.INACTIVE);
         binding.btnBack.setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
 
+        AtomicBoolean hasSubjects = new AtomicBoolean(false);
+
         viewModel.getState().observe(this, state -> {
             if (state == SessionViewModel.SessionState.SUBJECTS_READY) {
                 initializeComponents();
+                hasSubjects.set(true);
+            } else {
+                hasSubjects.set(false);
             }
 
             viewModel.getCurrentMateriaName().observe(this, current -> {
@@ -69,7 +76,9 @@ public class SessionActivity extends AppCompatActivity {
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                onPauseTimer();
+                if(hasSubjects.get()) {
+                    onPauseTimer();
+                }
                 finish();
             }
         });
