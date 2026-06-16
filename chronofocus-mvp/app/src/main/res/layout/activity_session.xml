@@ -119,8 +119,17 @@
                 android:text="@string/iniciar" />
 
             <Button
-                android:id="@+id/btn_finish"
+                android:id="@+id/btn_finishPrimary"
                 style="@style/ButtonStyle.Primary"
+                android:layout_width="@dimen/min_button_width"
+                android:layout_height="@dimen/min_button_height"
+                android:layout_marginHorizontal="7sp"
+                android:text="@string/finalizar"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_finishSecondary"
+                style="@style/ButtonStyle.Secondary"
                 android:layout_width="@dimen/min_button_width"
                 android:layout_height="@dimen/min_button_height"
                 android:layout_marginHorizontal="7sp"
@@ -138,7 +147,7 @@
 
             <Button
                 android:id="@+id/btn_restart"
-                style="@style/ButtonStyle.Primary"
+                style="@style/ButtonStyle.Secondary"
                 android:layout_width="@dimen/min_button_width"
                 android:layout_height="@dimen/min_button_height"
                 android:layout_marginHorizontal="7sp"
@@ -168,7 +177,7 @@
             >
 
             <TextView
-                android:id="@+id/tvNextSubject"
+                android:id="@+id/tvNextSubjectTitle"
                 style="@style/TextStyle.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -188,7 +197,7 @@
             android:background="@color/color_content_body" >
 
             <TextView
-                android:id="@+id/tvMateria2"
+                android:id="@+id/tvNextSubject"
                 style="@style/TextStyle.Body"
                 android:layout_weight="2"
                 android:gravity="center_vertical"

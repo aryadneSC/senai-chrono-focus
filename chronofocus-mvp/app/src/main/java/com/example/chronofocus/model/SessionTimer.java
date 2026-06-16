@@ -1,46 +1,52 @@
 package com.example.chronofocus.model;
 
 public class SessionTimer {
-    private int materiaID;
-    private long time;
-    private Status status;
-    private long startedAt = -1;
+    private final int materiaID;
 
-    public SessionTimer(int materiaID, long time, Status status) {
+    private long baseMillis;
+    private long pauseRemaining = -1;
+    private long endTimeMillis = -1;
+    private SessionStatus sessionStatus;
+
+    public SessionTimer(int materiaID, long baseMillis, SessionStatus sessionStatus) {
         this.materiaID = materiaID;
-        this.time = time;
-        this.status = status;
+        this.baseMillis = baseMillis;
+        this.sessionStatus = sessionStatus;
     }
 
-    public SessionTimer(SessionTimer sessionTimer) {
-        this.materiaID = sessionTimer.materiaID;
-        this.time = sessionTimer.time;
-        this.status = sessionTimer.status;
-        this.startedAt = sessionTimer.startedAt;
+    public long getEndTimeMillis() {
+        return endTimeMillis;
     }
 
-    public long getStartedAt() {
-        return startedAt;
+    public SessionStatus getStatus() {
+        return sessionStatus;
     }
 
-    public Status getStatus() {
-        return status;
+    public void setStatus(SessionStatus sessionStatus) {
+        this.sessionStatus = sessionStatus;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public long getTime() {
-        return time;
+    public long getBaseMillis() {
+        return baseMillis;
     }
 
     public int getMateriaID() {
         return materiaID;
     }
 
-    public void setStartedAt(long startedAt) {
-        this.startedAt = startedAt;
+    public void setEndTimeMillis(long endTimeMillis) {
+        this.endTimeMillis = endTimeMillis;
+    }
+    public void setBaseMillis(long baseMillis) {
+        this.baseMillis = baseMillis;
     }
 
+    public long getPauseRemaining() {
+        return pauseRemaining;
+    }
+
+    public void setPauseRemaining(long pauseRemaining) {
+        this.pauseRemaining = pauseRemaining;
+        sessionStatus = SessionStatus.PAUSED;
+    }
 }
