@@ -34,4 +34,7 @@ public interface MateriaDao {
 
     @Query("UPDATE Materia SET day = :day WHERE id = :id")
     public void updateMateria(DaysWeek day, int id);
+
+    @Query("SELECT * FROM Materia WHERE day LIKE :day AND (ultimo_dia_estudado <> :date OR ultimo_dia_estudado IS NULL) ORDER BY priority")
+    public List<Materia> listMateriasForSession(String day, String date);
 }

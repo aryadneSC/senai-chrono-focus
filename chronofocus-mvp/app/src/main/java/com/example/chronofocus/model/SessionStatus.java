@@ -1,8 +1,9 @@
 package com.example.chronofocus.model;
 
-public enum Status {
-    ONGOING,
+public enum SessionStatus {
+    STARTED,
     PAUSED,
     FINISHED,
-    INACTIVE
+    INACTIVE,
+    NEXT
 }

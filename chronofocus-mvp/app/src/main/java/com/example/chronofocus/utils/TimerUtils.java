@@ -11,25 +11,38 @@ public class TimerUtils { public static long convertToMillis(int seconds) {
         return (long)seconds * 1000;
     }
 
-    @SuppressLint("DefaultLocale")
-    public static String millisToFormattedTimeString(long millis) {
+    public static String getStringFormatFor(long millis) {
+        long oneMinute = 60000;
+        long oneHour = 3600000;
 
-        long seconds = millis / 1000;
+        if (millis < oneMinute) {
+            return "%02d";
+        } else if (millis < oneHour) {
+            return "%02d:%02d";
+        } else {
+            return "%02d:%02d:%02d";
+        }
+    }
+    @SuppressLint("DefaultLocale")
+    public static String millisToFormattedTimeString(long tickingMillis, long baseMillis) {
+        long seconds = tickingMillis / 1000;
+
         long minutes = seconds / 60;
         long hours = minutes / 60;
 
         seconds = seconds % 60;
         minutes = minutes % 60;
 
-        if(hours > 0) {
-            return String.format("%02d:%02d:%02d", hours, minutes, seconds);
-        } else if(minutes > 0) {
-            return String.format("%02d:%02d", minutes, seconds);
-        } else if (seconds > 0) {
-            return String.format("%02d", seconds);
-        } else {
-            throw new IllegalArgumentException("At millisToFormattedTimeString(), millis was negative");
+        String format = getStringFormatFor(baseMillis);
+        switch (format) {
+            case "%02d":
+                return String.format(format, seconds);
+
+            case "%02d:%02d":
+                return String.format(format, minutes, seconds);
+
+            default:
+                return String.format(format, hours, minutes, seconds);
         }
     }
-
 }
