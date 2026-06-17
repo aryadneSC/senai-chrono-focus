@@ -13,7 +13,7 @@ import com.example.chronofocus.utils.RoomTypeConverterUtils;
 
 
 
-@Database(entities = {Materia.class}, version = 5)
+@Database(entities = {Materia.class}, version = 6)
 
 @TypeConverters({RoomTypeConverterUtils.class})
 

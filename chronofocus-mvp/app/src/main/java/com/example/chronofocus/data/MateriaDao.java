@@ -16,7 +16,8 @@ import java.util.List;
 public interface MateriaDao {
     @Insert
     public void insertMateria(Materia materia);
-
+    @Insert
+    void insertMateria(List<Materia> materia);
     @Query("DELETE FROM Materia WHERE id = :id")
     public void deleteMateria(int id);
 
@@ -29,8 +30,8 @@ public interface MateriaDao {
     @Query("UPDATE Materia SET ultimo_dia_estudado = :date WHERE id = :id")
     public void updateMateria(int id, String date);
 
-    @Query("SELECT * FROM Materia WHERE day LIKE :day AND (ultimo_dia_estudado <> :date OR ultimo_dia_estudado IS NULL) ORDER BY priority")
-    public List<Materia> listMateriasForSession(String day, String date);
+    @Query("SELECT * FROM Materia WHERE day LIKE :day AND (ultimo_dia_estudado <> :date OR ultimo_dia_estudado IS NULL)")
+    public LiveData<List<Materia>> listMateriasForSession(String day, String date);
 
     @Query("SELECT COUNT(*) FROM Materia WHERE day LIKE :day")
     int countMateriasOn(String day);

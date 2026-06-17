@@ -77,9 +77,10 @@ public class MateriaCadastroActivity extends AppCompatActivity {
             } else if (baseTime == 0) {
                 Toast.makeText(this, "Por favor, defina uma duração!", Toast.LENGTH_LONG).show();
             } else {
-                viewModel.inserirMateria(new Materia(nome, baseTime, dia, 5));
-                finish();
+
+                viewModel.inserirMateria(new Materia(nome, baseTime, dia));
                 Toast.makeText(this, "Materia cadastrada!", Toast.LENGTH_LONG).show();
+                finish();
             }
         });
 
