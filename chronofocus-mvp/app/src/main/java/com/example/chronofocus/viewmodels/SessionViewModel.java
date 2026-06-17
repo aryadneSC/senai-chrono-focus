@@ -3,6 +3,7 @@ package com.example.chronofocus.viewmodels;
 import static androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY;
 
 import android.os.SystemClock;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -65,68 +66,73 @@ public class SessionViewModel extends ViewModel {
         return endTime;
     }
 
-    private void notifyStarted() {
+    public void notifyStarted() {
         sessionTimer.setPauseRemaining(-1);
+        sessionTimer.setStatus(SessionStatus.STARTED);
         sessionRepo.saveSession(sessionTimer);
     }
 
-    private void notifyPaused() {
+    public void notifyPaused(boolean quietly) {
         long remaining = sessionTimer.getEndTimeMillis() - SystemClock.elapsedRealtime();
         sessionTimer.setPauseRemaining(remaining);
-        updatePausedOrInactive(remaining);
-        sessionRepo.saveSession(sessionTimer);
+
+        if(!quietly) {
+            updatePausedOrInactive(remaining);
+        }
+        sessionTimer.setStatus(SessionStatus.PAUSED);
+        sessionRepo.saveSessionBlocking(sessionTimer);
     }
 
     private void updatePausedOrInactive(long remaining) {
         formattedPausedOrInactive.postValue(TimerUtils.millisToFormattedTimeString(remaining, getBaseMillis()));
     }
 
-    private void notifyEnded() {
+    public void notifyEnded(Runnable onCompleted) {
         sessionTimer.setPauseRemaining(-1);
         sessionTimer.setEndTimeMillis(-1);
-        sessionRepo.updateUltimoDiaEstudado(sessionTimer.getMateriaID(), DataUtils.returnActualDate());
-        sessionRepo.clearSession();
+        sessionTimer.setStatus(SessionStatus.FINISHED);
         queue.poll();
-    }
 
-    private void notifyNext() {
-        queue.poll();
-        var materia = queue.peek();
-
-        if(materia == null) {
-            state.postValue(SessionState.NO_SUBJECTS_FOUND);
+        ThreadsManager.startTask(() -> {
+            sessionRepo.updateUltimoDiaEstudado(sessionTimer.getMateriaID(), DataUtils.returnActualDate());
             sessionRepo.clearSession();
-            return;
-        }
+            if (onCompleted != null) onCompleted.run();
+        });
+    }
+    public void pauseAndSave(Runnable onCompleted) {
+        long remaining = sessionTimer.getEndTimeMillis() - SystemClock.elapsedRealtime();
+        sessionTimer.setPauseRemaining(remaining);
+        sessionTimer.setStatus(SessionStatus.PAUSED);
 
-        startFreshSession(materia);
-        syncPausedOrInactive();
-        sessionRepo.saveSession(sessionTimer);
+        ThreadsManager.startTask(() -> {
+            sessionRepo.saveSessionBlocking(sessionTimer);
+            if (onCompleted != null) onCompleted.run();
+        });
     }
 
-    private void resetSession() {
+    public void notifyNext() {
+        ThreadsManager.startTask(() -> {
+            sessionTimer.setStatus(SessionStatus.INACTIVE);
+            var materia = queue.peek();
+
+            if (materia == null) {
+                state.postValue(SessionState.NO_SUBJECTS_FOUND);
+                return;
+            }
+
+            startFreshSession(materia);
+            syncPausedOrInactive();
+            sessionRepo.saveSession(sessionTimer);
+            state.postValue(SessionState.SUBJECTS_READY);
+        });
+    }
+
+    public void resetSession() {
+        if (sessionTimer == null) return;
+
         sessionTimer.setPauseRemaining(-1);
         sessionTimer.setEndTimeMillis(-1);
         sessionRepo.updateUltimoDiaEstudado(sessionTimer.getMateriaID(), null);
-        sessionRepo.clearSession();
-    }
-
-    public void notifyStatus(SessionStatus sessionStatus) {
-        if(sessionTimer == null) return;
-
-        switch (sessionStatus) {
-            case STARTED:   notifyStarted(); break;
-            case PAUSED:    notifyPaused(); break;
-            case FINISHED:  notifyEnded(); break;
-            case INACTIVE:  resetSession(); break;
-            case NEXT:  notifyNext(); break;
-        }
-        sessionTimer.setStatus(sessionStatus);
-    }
-
-    private void restoreSessionFromPreferences(Materia materia) {
-        sessionTimer = sessionRepo.loadSession();
-        updateCurrentAndNextMateriaNames(materia);
     }
 
     private void updateCurrentAndNextMateriaNames(Materia materia) {
@@ -134,7 +140,6 @@ public class SessionViewModel extends ViewModel {
         nextMateriaName.postValue(queue.size() > 1 ? queue.get(1).getNome() : "");
     }
     private void startFreshSession(Materia materia) {
-        materia.setBaseTime(5000); // TESTE
         sessionTimer = new SessionTimer(materia.getId(), materia.getBaseTime(), SessionStatus.INACTIVE);
         updateCurrentAndNextMateriaNames(materia);
     }
@@ -160,7 +165,14 @@ public class SessionViewModel extends ViewModel {
             var materia = queue.peek();
             if (materia != null) {
                 if (sessionRepo.hasSession()) {
-                    restoreSessionFromPreferences(materia);
+                    SessionTimer restored = sessionRepo.loadSession();
+                    if (restored != null && restored.getMateriaID() == (materia.getId())) {
+                        sessionTimer = restored;
+                        updateCurrentAndNextMateriaNames(materia);
+                    } else {
+                        sessionRepo.clearSessionBlocking();
+                        startFreshSession(materia);
+                    }
                 } else {
                     startFreshSession(materia);
                 }
@@ -186,7 +198,6 @@ public class SessionViewModel extends ViewModel {
     public SessionViewModel(MateriaRepository materiaRepo, SessionRepository sessionRepo) {
         this.sessionRepo = sessionRepo;
         queue = new LinkedList<>();
-        updateSessionData();
     }
 
     public static final ViewModelInitializer<SessionViewModel> initializer = new ViewModelInitializer<>(

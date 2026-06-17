@@ -47,53 +47,63 @@ public class SessionActivity extends AppCompatActivity {
         changeButtonsVisibility(SessionStatus.INACTIVE);
         binding.btnBack.setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
 
-        AtomicBoolean hasSubjects = new AtomicBoolean(false);
+        initClickListeners();
+        observeViewModel();
 
-        viewModel.getState().observe(this, state -> {
-            if (state == SessionViewModel.SessionState.SUBJECTS_READY) {
-                initializeComponents();
-                hasSubjects.set(true);
-            } else {
-                hasSubjects.set(false);
-            }
-
-            viewModel.getCurrentMateriaName().observe(this, current -> {
-                binding.tvMateria.setText(current);
-            });
-
-            viewModel.getNextMateriaName().observe(this, next -> {
-                binding.containerNextMateria.setVisibility(next.isEmpty() ? View.GONE : View.VISIBLE);
-                binding.tvNextSubject.setText(next);
-            });
-
-            viewModel.getFormattedPausedOrInactive().observe(this, formattedPause -> {
-                if(!formattedPause.isEmpty()) {
-                    binding.tvTimer.setText(formattedPause);
-                }
-            });
-        });
+        viewModel.updateSessionData();
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                if(hasSubjects.get()) {
-                    onPauseTimer();
+                if (hasSubjects.get()) {
+                    setEnabled(false);
+                    if (timer != null) {
+
+                        isPaused = true;
+                        timer.cancel();
+                        changeButtonsVisibility(SessionStatus.PAUSED);
+                        viewModel.pauseAndSave(() -> runOnUiThread(() -> finish()));
+                    } else {
+                        finish();
+                    }
+                } else {
+                    finish();
                 }
-                finish();
             }
         });
     }
 
-    private void initializeComponents() {
-        binding.tvTimer.setText(TimerUtils.millisToFormattedTimeString(endTime, viewModel.getBaseMillis()));
-
+    private void initClickListeners() {
         binding.btnStart.setOnClickListener(v -> onStartTimer());
         binding.btnFinishPrimary.setOnClickListener(v -> onFinishSession());
         binding.btnFinishSecondary.setOnClickListener(v -> onFinishSession());
-        binding.btnPause.setOnClickListener(v -> onPauseTimer());
+        binding.btnPause.setOnClickListener(v -> onPauseTimer(false));
         binding.btnRestart.setOnClickListener(v -> onRestartTimer());
         binding.btnResume.setOnClickListener(v -> onResumeTimer());
         binding.btnNextMateria.setOnClickListener(v -> onNextPressed());
+    }
+
+    AtomicBoolean hasSubjects = new AtomicBoolean(false);
+
+    private void observeViewModel() {
+        viewModel.getState().observe(this, state -> {
+            hasSubjects.set(state == SessionViewModel.SessionState.SUBJECTS_READY);
+        });
+
+        viewModel.getCurrentMateriaName().observe(this, current -> {
+            binding.tvMateria.setText(current);
+        });
+
+        viewModel.getNextMateriaName().observe(this, next -> {
+            binding.containerNextMateria.setVisibility(next.isEmpty() ? View.GONE : View.VISIBLE);
+            binding.tvNextSubject.setText(next);
+        });
+
+        viewModel.getFormattedPausedOrInactive().observe(this, formattedPause -> {
+            if (!formattedPause.isEmpty()) {
+                binding.tvTimer.setText(formattedPause);
+            }
+        });
     }
 
     private void hideAllButtons() {
@@ -146,7 +156,7 @@ public class SessionActivity extends AppCompatActivity {
 
     private CountDownTimer setupTimer() {
         fetchEndTime();
-        long remaining = viewModel.updateAndGetEndTimeMillis() - SystemClock.elapsedRealtime();
+        long remaining = endTime - SystemClock.elapsedRealtime();
 
         return new CountDownTimer(remaining, 1000) {
             @Override
@@ -161,19 +171,17 @@ public class SessionActivity extends AppCompatActivity {
         };
     }
     private void onStartTimer() {
-        SessionStatus status = SessionStatus.STARTED;
-        changeButtonsVisibility(status);
+        changeButtonsVisibility(SessionStatus.STARTED);
         isPaused = false;
         timer = setupTimer();
         timer.start();
-        viewModel.notifyStatus(status);
+        viewModel.notifyStarted();
     }
-    private void onPauseTimer() {
-        SessionStatus status = SessionStatus.PAUSED;
-        changeButtonsVisibility(status);
-        viewModel.notifyStatus(status);
-        isPaused = true;
+    private void onPauseTimer(boolean quietly) {
+        changeButtonsVisibility(SessionStatus.PAUSED);
         timer.cancel();
+        viewModel.notifyPaused(quietly);
+        isPaused = true;
     }
 
     private void onResumeTimer() {
@@ -181,21 +189,21 @@ public class SessionActivity extends AppCompatActivity {
     }
 
     private void onFinishSession() {
-        SessionStatus status = SessionStatus.FINISHED;
-        changeButtonsVisibility(status);
         timer.cancel();
-        viewModel.notifyStatus(status);
+        changeButtonsVisibility(SessionStatus.FINISHED);
+        viewModel.notifyEnded(() -> runOnUiThread(() -> {
+            binding.btnRestart.setEnabled(true);
+        }));
     }
 
     private void onRestartTimer() {
-        viewModel.notifyStatus(SessionStatus.INACTIVE);
+        viewModel.resetSession();
         onStartTimer();
     }
 
     private void onNextPressed() {
-        SessionStatus status = SessionStatus.INACTIVE;
-        viewModel.notifyStatus(SessionStatus.NEXT);
-        changeButtonsVisibility(status);
+        viewModel.notifyNext();
+        changeButtonsVisibility(SessionStatus.INACTIVE);
     }
 
 

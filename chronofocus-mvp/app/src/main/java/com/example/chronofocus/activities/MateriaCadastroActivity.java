@@ -48,7 +48,7 @@ public class MateriaCadastroActivity extends AppCompatActivity {
 
         chipSetText(DaysWeek.values(), chipExtractor(binding.chipGroupDias));
         binding.btn2.setOnClickListener(v -> {
-            String nome = binding.txtbx1.getText().toString();
+            String nome = binding.etNome.getText().toString();
 
             ArrayList<DaysWeek> dia = chipTextExtractor(chipSelectedExtractor());
             Toast.makeText(this, String.format("ARRAY %s", dia.toString()), Toast.LENGTH_LONG).show();

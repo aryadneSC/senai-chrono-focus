@@ -65,16 +65,15 @@
 
         <FrameLayout
             android:id="@+id/frameLayout"
-            android:layout_width="310dp"
-            android:layout_height="298dp"
-            android:contentDescription="@string/container_de_tempo">
+            android:layout_width="260dp"
+            android:layout_height="260dp">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:contentDescription="@string/circulo_do_timer"
                 android:src="@drawable/timer_circle"
-                app:tint="@color/color_content_body" />
+                app:tint="@color/color_content_body"/>
+
 
             <TextView
                 android:id="@+id/tvTimer"
@@ -83,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/_00_00_00"
-                android:textSize="48sp" />
+                />
 
         </FrameLayout>
 
@@ -191,7 +190,6 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_next_materia"
-            style="@style/Content.Body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/color_content_body" >
