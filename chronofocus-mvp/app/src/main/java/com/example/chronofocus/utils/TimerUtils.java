@@ -10,19 +10,30 @@ import java.util.Locale;
 public class TimerUtils { public static long convertToMillis(int seconds) {
         return (long)seconds * 1000;
     }
+    private static final long hourMillis = 3600000;
+    private static final long minuteMillis = 60000;
+    private static final long secondMillis = 1000;
+    public static long getMillisFromTimes(int hour, int minute, int second) {
+        long hoursMillis = hour * hourMillis;
+        long minutesMillis = minute * minuteMillis;
+        long secondsMillis = second * secondMillis;
+
+        return hoursMillis + minutesMillis + secondsMillis;
+    }
 
     public static String getStringFormatFor(long millis) {
-        long oneMinute = 60000;
-        long oneHour = 3600000;
-
-        if (millis < oneMinute) {
+        if (millis < minuteMillis) {
             return "%02d";
-        } else if (millis < oneHour) {
+        } else if (millis < hourMillis) {
             return "%02d:%02d";
         } else {
             return "%02d:%02d:%02d";
         }
     }
+    public static String millisToFormattedTimeString(long millis) {
+        return millisToFormattedTimeString(millis,  millis);
+    }
+
     @SuppressLint("DefaultLocale")
     public static String millisToFormattedTimeString(long tickingMillis, long baseMillis) {
         long seconds = tickingMillis / 1000;
@@ -45,4 +56,6 @@ public class TimerUtils { public static long convertToMillis(int seconds) {
                 return String.format(format, hours, minutes, seconds);
         }
     }
+
+
 }

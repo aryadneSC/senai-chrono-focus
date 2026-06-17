@@ -1,61 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    tools:context=".activities.HomeActivity">
 
-    <TextView
-        android:id="@+id/txtSaudacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ola_usuario"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/txtSessaoHoje"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="Sessão de Hoje"
-        android:textSize="28sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/btnIniciarSessao"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:text="INICIAR" />
+        android:paddingHorizontal="@dimen/container_padding"
+        android:paddingTop="@dimen/container_padding">
+
+        <TextView
+            android:id="@+id/txtSaudacao"
+            style="@style/TextStyle.Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ola_usuario"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtSessaoHoje"
+            style="@style/TextStyle.BigTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Sessões do dia"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtSaudacao" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/container_padding"
+        android:paddingBottom="8dp"
+        android:paddingTop="20dp">
 
         <TextView
             android:id="@+id/txtMaterias"
+            style="@style/TextStyle.Subtitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Matérias de hoje"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:text="Matérias" />
 
         <TextView
             android:id="@+id/txtVerTodas"
+            style="@style/TextStyle.Subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ver_todas"
-            android:textColor="#673AB7"
-            android:textStyle="bold" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@drawable/divider_materia"
+        android:dividerHeight="1dp"
+        android:paddingHorizontal="@dimen/container_padding" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/container_padding"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp">
+
+        <Button
+            android:id="@+id/btnIniciarSessao"
+            style="@style/ButtonStyle.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/min_button_height"
+            android:text="Iniciar" />
+
+        <Button
+            android:id="@+id/btnAdicionarMateria"
+            style="@style/ButtonStyle.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/min_button_height"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:text="Adicionar Matéria" />
+
+    </LinearLayout>
 
 </LinearLayout>

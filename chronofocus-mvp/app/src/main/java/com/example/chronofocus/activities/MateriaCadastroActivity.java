@@ -1,12 +1,13 @@
 package com.example.chronofocus.activities;
 
+import static com.example.chronofocus.utils.TimerUtils.getMillisFromTimes;
+
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -17,13 +18,15 @@ import com.example.chronofocus.R;
 import com.example.chronofocus.databinding.ActivityMateriaCadastroBinding;
 import com.example.chronofocus.model.DaysWeek;
 import com.example.chronofocus.model.Materia;
-import com.example.chronofocus.utils.DataUtils;
+import com.example.chronofocus.model.SessionStatus;
 import com.example.chronofocus.viewmodels.MateriaCadastroViewModel;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class MateriaCadastroActivity extends AppCompatActivity {
@@ -46,23 +49,105 @@ public class MateriaCadastroActivity extends AppCompatActivity {
             return insets;
         });
 
+        binding.btnBack.setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                finish();
+            }
+        });
+
+        setupNumericUpDown();
+
         chipSetText(DaysWeek.values(), chipExtractor(binding.chipGroupDias));
-        binding.btn2.setOnClickListener(v -> {
+        binding.btnSalvar.setOnClickListener(v -> {
             String nome = binding.etNome.getText().toString();
 
             ArrayList<DaysWeek> dia = chipTextExtractor(chipSelectedExtractor());
-            Toast.makeText(this, String.format("ARRAY %s", dia.toString()), Toast.LENGTH_LONG).show();
 
-            if (nome.isEmpty() | dia.isEmpty()){
-                Toast.makeText(this, "Por favor, digite o nome da materia!", Toast.LENGTH_SHORT).show();
+            long baseTime = getMillisFromTimes(
+                    getNumericValue(binding.etHour),
+                    getNumericValue(binding.etMinute),
+                    getNumericValue(binding.etSecond));
+
+            if (nome.isEmpty()){
+                Toast.makeText(this, "Por favor, digite o nome da materia!", Toast.LENGTH_LONG).show();
+            } else if (dia.isEmpty()) {
+                Toast.makeText(this, "Por favor, selecione um dia!", Toast.LENGTH_LONG).show();
+            } else if (baseTime == 0) {
+                Toast.makeText(this, "Por favor, defina uma duração!", Toast.LENGTH_LONG).show();
             } else {
-                viewModel.inserirMateria(new Materia(nome, 354540, dia, 5));
+                viewModel.inserirMateria(new Materia(nome, baseTime, dia, 5));
                 finish();
+                Toast.makeText(this, "Materia cadastrada!", Toast.LENGTH_LONG).show();
             }
         });
 
 
     }
+
+    private void setupNumericUpDown() {
+        timeFixOnFocusLoss(binding.etHour);
+        timeFixOnFocusLoss(binding.etMinute);
+        timeFixOnFocusLoss(binding.etSecond);
+
+        binding.btnHourUp.setOnClickListener(v ->
+                incrementValue(binding.etHour, 23));
+        binding.btnMinuteUp.setOnClickListener(v ->
+                incrementValue(binding.etMinute, 59));
+
+        binding.btnSecondUp.setOnClickListener(v ->
+                incrementValue(binding.etSecond, 59));
+
+        binding.btnHourDown.setOnClickListener(v ->
+                decrementValue(binding.etHour, 23));
+
+        binding.btnMinuteDown.setOnClickListener(v ->
+                decrementValue(binding.etMinute, 59));
+
+        binding.btnSecondDown.setOnClickListener(v ->
+                decrementValue(binding.etSecond, 59));
+    }
+
+    private void timeFixOnFocusLoss(TextInputEditText editText) {
+        editText.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus) {
+                int value = Integer.parseInt(editText.getText().toString());
+
+                if (value > 59) {
+                    editText.setText("59");
+                }
+            }
+        });
+    }
+
+    private int getNumericValue(TextInputEditText editText) {
+        String text = editText.getText() != null
+                ? editText.getText().toString()
+                : "00";
+         return text.isEmpty() ? 0 : Integer.parseInt(text);
+
+    }
+    private void incrementValue(TextInputEditText editText, int maxValue) {
+        int value = getNumericValue(editText);
+        value++;
+
+        if (value > maxValue) {
+            value = 0;
+        }
+        editText.setText(String.format(Locale.getDefault(), "%02d", value));
+    }
+
+    private void decrementValue(TextInputEditText editText, int maxValue) {
+        int value = getNumericValue(editText);
+        value--;
+        if (value < 0) {
+            value = maxValue;
+        }
+
+        editText.setText(String.format(Locale.getDefault(), "%02d", value));
+    }
+
 
 
     private ArrayList<DaysWeek> chipTextExtractor(List<Chip> chips){

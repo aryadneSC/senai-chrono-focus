@@ -19,6 +19,7 @@ import com.example.chronofocus.databinding.ActivityHomeBinding;
 import com.example.chronofocus.model.DaysWeek;
 import com.example.chronofocus.model.Materia;
 import com.example.chronofocus.utils.DataUtils;
+import com.example.chronofocus.utils.MateriaAdapter;
 import com.example.chronofocus.viewmodels.HomeViewModel;
 
 import java.util.List;
@@ -38,9 +39,27 @@ public class HomeActivity extends AppCompatActivity {
         recuperarNomeUsuario();
         viewModel.addMateriasDoDia(DaysWeek.getCurrentDay().name(), DataUtils.returnActualDate());
 
+        binding.btnAdicionarMateria.setOnClickListener(v ->{
+            Intent intent = new Intent(this, MateriaCadastroActivity.class);
+            startActivity(intent);
+        });
+
+        viewModel.hasSessionOn(DataUtils.returnActualDate(), hasMaterias -> {
+            runOnUiThread(() -> {
+                if (hasMaterias) {
+                    binding.btnIniciarSessao.setVisibility(View.VISIBLE);
+                    binding.btnAdicionarMateria.setVisibility(View.GONE);
+                } else {
+                    binding.btnAdicionarMateria.setVisibility(View.VISIBLE);
+                    binding.btnIniciarSessao.setVisibility(View.GONE);
+                }
+            });
+        });
+
         LiveData<List<Materia>> materias = viewModel.getMateriasDoDia();
-        materias.observe(this, o ->{
-                myAdapter(materias.getValue());
+        viewModel.getMateriasDoDia().observe(this, list -> {
+            MateriaAdapter adapter = new MateriaAdapter(this, list);
+            binding.listView.setAdapter(adapter);
         });
 
         binding.txtVerTodas.setOnClickListener(v -> {
@@ -62,10 +81,4 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-    private void myAdapter(List<Materia> materias){
-
-        ArrayAdapter<Materia> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, materias);
-        binding.listView.setAdapter(adapter);
-
-    }
 }

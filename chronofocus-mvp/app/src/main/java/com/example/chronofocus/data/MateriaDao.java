@@ -32,4 +32,6 @@ public interface MateriaDao {
     @Query("SELECT * FROM Materia WHERE day LIKE :day AND (ultimo_dia_estudado <> :date OR ultimo_dia_estudado IS NULL) ORDER BY priority")
     public List<Materia> listMateriasForSession(String day, String date);
 
+    @Query("SELECT COUNT(*) FROM Materia WHERE day LIKE :day")
+    int countMateriasOn(String day);
 }

@@ -2,14 +2,18 @@ package com.example.chronofocus.activities;
 
 import static android.app.PendingIntent.getActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -20,7 +24,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.chronofocus.R;
 import com.example.chronofocus.databinding.ActivitySubjectListBinding;
+import com.example.chronofocus.model.DaysWeek;
 import com.example.chronofocus.model.Materia;
+import com.example.chronofocus.utils.MateriaAdapter;
+import com.example.chronofocus.utils.TimerUtils;
 import com.example.chronofocus.viewmodels.SubjectListViewModel;
 
 import java.util.List;
@@ -50,7 +57,14 @@ public class SubjectListActivity extends AppCompatActivity {
 
 
 
-        binding.btnVoltarMateria.setOnClickListener(v -> finish());
+        binding.btnBack.setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                finish();
+            }
+        });
+
         binding.button2.setOnClickListener(v -> {
             Intent cadastroTela = new Intent(this, MateriaCadastroActivity.class);
             startActivity(cadastroTela);
@@ -60,26 +74,17 @@ public class SubjectListActivity extends AppCompatActivity {
 
         LiveData<List<Materia>> materias = viewModel.getAllMateria();
 
-       materias.observe(this, o -> {
-           myAdapter(materias.getValue());
-       });
-
-       binding.listVMaterias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Materia materia = materias.getValue().get(position);
-                deleteButton(materia.getId());
-            }
+        materias.observe(this, list -> {
+            MateriaAdapter adapter = new MateriaAdapter(this, list);
+            binding.listVMaterias.setAdapter(adapter);
         });
 
+        binding.listVMaterias.setOnItemClickListener((parent, itemView, position, id) -> {
+            Materia materia = materias.getValue().get(position);
+            deleteButton(materia.getId());
+        });
 
     }
-
-   private void myAdapter(List<Materia> list){
-        ArrayAdapter<Materia> adapter =  new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
-
-        binding.listVMaterias.setAdapter(adapter);
-   }
 
    private void deleteButton(int materiaId){
 

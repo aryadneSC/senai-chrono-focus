@@ -17,6 +17,7 @@ import com.example.chronofocus.utils.ThreadsManager;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.function.Consumer;
 
 public class SessionRepository {
     private Queue<Materia> sessionSequence;
@@ -101,5 +102,11 @@ public class SessionRepository {
         return new LinkedList<>(materiaDao.listMateriasForSession(currentDay, currentData));
     }
 
+    public void hasSessionOn(String day, Consumer<Boolean> callback) {
+        ThreadsManager.startTask(() -> {
+            boolean result = materiaDao.countMateriasOn(day) > 0;
+            callback.accept(result);
+        });
+    }
 
 }

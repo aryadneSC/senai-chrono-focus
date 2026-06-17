@@ -58,7 +58,7 @@
 
         <TextView
             android:id="@+id/tvMateria"
-            style="@style/TextStyle.Subtitle"
+            style="@style/TextStyle.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/mat_ria" />
@@ -112,7 +112,7 @@
             <Button
                 android:id="@+id/btn_start"
                 style="@style/ButtonStyle.Primary"
-                android:layout_width="@dimen/min_button_width"
+                android:layout_width="250dp"
                 android:layout_height="@dimen/min_button_height"
                 android:layout_marginHorizontal="7sp"
                 android:text="@string/iniciar" />
@@ -181,7 +181,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="@string/pr_xima"
+                android:text="Próxima Matéria"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -191,12 +191,12 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_next_materia"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:background="@color/color_content_body" >
 
             <TextView
                 android:id="@+id/tvNextSubject"
-                style="@style/TextStyle.Body"
+                style="@style/TextStyle.Subtitle"
                 android:layout_weight="2"
                 android:gravity="center_vertical"
                 android:paddingHorizontal="@dimen/body_padding"
