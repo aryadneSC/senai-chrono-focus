@@ -98,7 +98,7 @@ public class SessionRepository {
     }
 
     public LinkedList<Materia> getSessionSequence(String currentDay, String currentData) {
-        return new LinkedList<>(materiaDao.listMateriasForSession(currentDay, currentData));
+        return new LinkedList<>(materiaDao.listMateriasForSession(currentDay, currentData).getValue());
     }
 
 

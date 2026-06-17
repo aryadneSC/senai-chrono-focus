@@ -23,11 +23,13 @@ public class Materia  {
 	private long baseTime;
 	@ColumnInfo(name = "day")
 	private ArrayList<DaysWeek> day;
-	@ColumnInfo(name = "priority")
-	private int priority;
 	@ColumnInfo(name = "ultimo_dia_estudado")
 	private String ultimoDiaEstudado;
-	public Materia(String nome, long baseTime, ArrayList<DaysWeek> day, int priority){
+
+	public Materia(){}
+
+
+	public Materia(String nome, long baseTime, ArrayList<DaysWeek> day){
 		this.nome = nome;
 		this.baseTime = baseTime;
 		this.day = day;
@@ -36,7 +38,6 @@ public class Materia  {
 	public Materia(Materia materia){
 		this.nome = materia.nome;
 		this.baseTime = materia.baseTime;
-		this.priority = materia.priority;
 		this.day = materia.day;
 	}
 
@@ -60,13 +61,6 @@ public class Materia  {
 		return baseTime;
 	}
 
-	public int getPriority() {
-		return priority;
-	}
-
-	public void setPriority(int priority) {
-		this.priority = priority;
-	}
 
 	public void setBaseTime(long baseTime) {
 		this.baseTime = baseTime;

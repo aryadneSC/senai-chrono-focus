@@ -5,6 +5,7 @@ import android.app.Application;
 import com.example.chronofocus.data.ChronoDataBase;
 import com.example.chronofocus.repository.MateriaRepository;
 import com.example.chronofocus.repository.SessionRepository;
+import com.google.firebase.FirebaseApp;
 
 
 public class ChronoFocusApp extends Application {
@@ -16,6 +17,7 @@ public class ChronoFocusApp extends Application {
        super.onCreate();
        db = ChronoDataBase.getInstance(getApplicationContext());
        materiaRepo = new MateriaRepository(db.materiaDao());
+       FirebaseApp.initializeApp(this);
        sessionRepo = new SessionRepository(this, db.materiaDao());
    }
 
