@@ -52,6 +52,8 @@ public enum DaysWeek {
         }
     }
 
+
+
     @Nullable
     public static DaysWeek stringToEnum(CharSequence charSequence){
         return stringToEnum(charSequence.toString());

@@ -17,6 +17,7 @@ import com.example.chronofocus.utils.ThreadsManager;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.function.Consumer;
 
 public class SessionRepository {
     private Queue<Materia> sessionSequence;
@@ -48,6 +49,15 @@ public class SessionRepository {
                 .putString(KEY_STATUS, sessionTimer.getStatus().name())
                 .apply();
     }
+    public void saveSessionBlocking(SessionTimer sessionTimer) {
+        prefs.edit()
+                .putInt(KEY_MATERIA_ID, sessionTimer.getMateriaID())
+                .putLong(KEY_BASE_MILLIS, sessionTimer.getBaseMillis())
+                .putLong(KEY_PAUSE_REMAINING, sessionTimer.getPauseRemaining())
+                .putLong(KEY_END_TIME_MILLIS, sessionTimer.getEndTimeMillis())
+                .putString(KEY_STATUS, sessionTimer.getStatus().name())
+                .commit();
+    }
 
     public SessionTimer loadSession() {
         int materiaID = prefs.getInt(KEY_MATERIA_ID, -1);
@@ -64,6 +74,10 @@ public class SessionRepository {
     }
     public void clearSession() {
         prefs.edit().clear().apply();
+    }
+
+    public void clearSessionBlocking() {
+        prefs.edit().clear().commit();
     }
     public boolean hasSession() {
         return prefs.getInt(KEY_MATERIA_ID, -1) != -1;
@@ -85,7 +99,14 @@ public class SessionRepository {
     }
 
     public LinkedList<Materia> getSessionSequence(String currentDay, String currentData) {
-         return new LinkedList<>(materiaDao.listMateriasForSession(currentDay, currentData));
+        return new LinkedList<>(materiaDao.listMateriasForSession(currentDay, currentData).getValue());
+    }
+
+    public void hasSessionOn(String day, Consumer<Boolean> callback) {
+        ThreadsManager.startTask(() -> {
+            boolean result = materiaDao.countMateriasOn(day) > 0;
+            callback.accept(result);
+        });
     }
 
 }

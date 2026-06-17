@@ -7,34 +7,87 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:padding="@dimen/container_padding"
     tools:context=".activities.LoginActivity">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="Chrono Focus"
-        android:textAlignment="center"
-        android:textSize="32sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="40dp"
+        android:layout_weight="1"
+        app:justifyContent="center"
+        android:gravity="center"
+        android:orientation="vertical"
 
-    <EditText
-        android:id="@+id/edtNomeUsuario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:hint="Digite seu nome.."
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        tools:ignore="VisualLintTextFieldSize" />
+        android:padding="@dimen/container_padding">
 
-    <Button
-        android:id="@+id/btnLogin"
+        <ImageView
+            android:layout_width="192dp"
+            android:layout_height="189dp"
+            android:src="@drawable/chrono"
+            tools:layout_editor_absoluteX="48dp"
+            tools:layout_editor_absoluteY="46dp" />
+
+        <TextView
+            style="@style/TextStyle.BigTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:letterSpacing="0.15"
+            android:text="CHRONO"
+            tools:layout_editor_absoluteX="63dp"
+            tools:layout_editor_absoluteY="292dp" />
+
+        <TextView
+            style="@style/TextStyle.Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
+            android:letterSpacing="0.3"
+            android:text="FOCUS" />
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ENTRAR"
-        tools:ignore="VisualLintButtonSize" />
+        android:layout_marginTop="5dp"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        app:justifyContent="center"
+        android:padding="20dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:hint="Seu nome">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtNomeUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnLogin"
+            style="@style/ButtonStyle.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/min_button_height"
+            android:text="Entrar" />
+
+    </LinearLayout>
+
+
+
+
+
+
+
 
 </LinearLayout>

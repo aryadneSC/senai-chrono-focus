@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "545733022353",
+    "project_id": "chrono-focus",
+    "storage_bucket": "chrono-focus.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545733022353:android:d47fd578eb2193bbe0e530",
+        "android_client_info": {
+          "package_name": "com.example.chronofocus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQxDoed_fGiQ9O3kAKQ6WH3UFNhom14rI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

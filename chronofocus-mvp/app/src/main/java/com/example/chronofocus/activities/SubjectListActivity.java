@@ -1,11 +1,20 @@
 package com.example.chronofocus.activities;
 
+import static android.app.PendingIntent.getActivity;
+
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -15,7 +24,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.chronofocus.R;
 import com.example.chronofocus.databinding.ActivitySubjectListBinding;
+import com.example.chronofocus.model.DaysWeek;
 import com.example.chronofocus.model.Materia;
+import com.example.chronofocus.utils.MateriaAdapter;
+import com.example.chronofocus.utils.TimerUtils;
 import com.example.chronofocus.viewmodels.SubjectListViewModel;
 
 import java.util.List;
@@ -44,28 +56,48 @@ public class SubjectListActivity extends AppCompatActivity {
         }
 
 
-        binding.btnVoltarMateria.setOnClickListener(v -> finish());
+
+        binding.btnBack.setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                finish();
+            }
+        });
+
         binding.button2.setOnClickListener(v -> {
             Intent cadastroTela = new Intent(this, MateriaCadastroActivity.class);
             startActivity(cadastroTela);
 
 
         });
+
         LiveData<List<Materia>> materias = viewModel.getAllMateria();
 
-       materias.observe(this, o -> {
-           myAdapter(materias.getValue());
-       });
+        materias.observe(this, list -> {
+            MateriaAdapter adapter = new MateriaAdapter(this, list);
+            binding.listVMaterias.setAdapter(adapter);
+        });
 
-
+        binding.listVMaterias.setOnItemClickListener((parent, itemView, position, id) -> {
+            Materia materia = materias.getValue().get(position);
+            deleteButton(materia.getId());
+        });
 
     }
 
-   private void myAdapter(List<Materia> list){
-        ArrayAdapter<Materia> adapter =  new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+   private void deleteButton(int materiaId){
 
-        binding.listVMaterias.setAdapter(adapter);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.msg_dlt_materia).setTitle(R.string.deletar_materia);
+        builder.setPositiveButton(R.string.sim_msg, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                 viewModel.deletarMateria(materiaId);
+            }
+        });
+       builder.setNegativeButton(R.string.nao_msg, null).show();
+
+
    }
-
 
 }

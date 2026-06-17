@@ -18,6 +18,7 @@ import com.example.chronofocus.repository.MateriaRepository;
 import com.example.chronofocus.repository.SessionRepository;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class HomeViewModel extends ViewModel {
     private final MateriaRepository db;
@@ -46,4 +47,7 @@ public class HomeViewModel extends ViewModel {
     public LiveData<List<Materia>> getMateriasDoDia(){
           return session.getMateriasDoDia();
     }
-}
+
+    public void hasSessionOn(String day, Consumer<Boolean> callback) {
+        session.hasSessionOn(day, callback);
+    }}
