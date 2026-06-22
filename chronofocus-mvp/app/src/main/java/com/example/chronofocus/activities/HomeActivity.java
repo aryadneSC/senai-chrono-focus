@@ -39,22 +39,6 @@ public class HomeActivity extends AppCompatActivity {
         recuperarNomeUsuario();
         viewModel.addMateriasDoDia(DaysWeek.getCurrentDay().name(), DataUtils.returnActualDate());
 
-        binding.btnAdicionarMateria.setOnClickListener(v ->{
-            Intent intent = new Intent(this, MateriaCadastroActivity.class);
-            startActivity(intent);
-        });
-
-        viewModel.hasSessionOn(DataUtils.returnActualDate(), hasMaterias -> {
-            runOnUiThread(() -> {
-                if (hasMaterias) {
-                    binding.btnIniciarSessao.setVisibility(View.VISIBLE);
-                    binding.btnAdicionarMateria.setVisibility(View.GONE);
-                } else {
-                    binding.btnAdicionarMateria.setVisibility(View.VISIBLE);
-                    binding.btnIniciarSessao.setVisibility(View.GONE);
-                }
-            });
-        });
 
         LiveData<List<Materia>> materias = viewModel.getMateriasDoDia();
         viewModel.getMateriasDoDia().observe(this, list -> {

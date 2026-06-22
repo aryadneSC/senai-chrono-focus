@@ -14,7 +14,7 @@ import java.util.List;
 
 public class MateriaRepository  {
     private MateriaDao db;
-    //private FirebaseFirestore dbFirebase;
+    private FirebaseFirestore dbFirebase;
 
     public MateriaRepository(MateriaDao db){
         this.db = db;
@@ -30,7 +30,7 @@ public class MateriaRepository  {
             @Override
             public void run(){
                 db.insertMateria(materia);
-                //FirebaseStore.add(materia);
+                FirebaseStore.add(materia);
             }
         });
     }

@@ -14,6 +14,7 @@ import com.example.chronofocus.model.SessionTimer;
 import com.example.chronofocus.utils.DataUtils;
 import com.example.chronofocus.utils.ThreadsManager;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -98,15 +99,16 @@ public class SessionRepository {
         return materiasDoDia;
     }
 
-    public LinkedList<Materia> getSessionSequence(String currentDay, String currentData) {
-        return new LinkedList<>(materiaDao.listMateriasForSession(currentDay, currentData).getValue());
-    }
 
     public void hasSessionOn(String day, Consumer<Boolean> callback) {
         ThreadsManager.startTask(() -> {
             boolean result = materiaDao.countMateriasOn(day) > 0;
             callback.accept(result);
         });
+    }
+    public LinkedList<Materia> getSessionSequence(String day, String date) {
+        List<Materia> result = materiaDao.listMateriasForSessionSync(day, date);
+        return new LinkedList<>(result != null ? result : Collections.emptyList());
     }
 
 }
