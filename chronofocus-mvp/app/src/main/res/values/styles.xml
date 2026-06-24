@@ -7,7 +7,7 @@
 
     <style name="TextStyle.Title">
         <item name="android:textSize">26sp</item>
-        <item name="android:textColor">@color/color_title</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textStyle">normal</item>
         <item name="android:letterSpacing">0.03</item>
@@ -15,7 +15,7 @@
 
     <style name="TextStyle.BigTitle">
         <item name="android:textSize">30sp</item>
-        <item name="android:textColor">@color/color_title</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textStyle">normal</item>
         <item name="android:letterSpacing">0.03</item>
@@ -23,13 +23,13 @@
 
     <style name="TextStyle.Subtitle">
         <item name="android:textSize">22sp</item>
-        <item name="android:textColor">@color/color_body</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
         <item name="android:letterSpacing">0.04</item>
     </style>
 
     <style name="TextStyle.Timer">
         <item name="android:textSize">30sp</item>
-        <item name="android:textColor">@color/color_title</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
         <item name="android:textStyle">normal</item>
         <item name="android:letterSpacing">0</item>
     </style>
@@ -43,29 +43,28 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:letterSpacing">0.05</item>
-        <item name="android:backgroundTint">@color/color_button_primary</item>
-        <item name="android:textColor">@color/color_button_primary_text</item>
+        <item name="android:backgroundTint">?attr/colorPrimary</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 
-    <style name="ButtonStyle.PrimaryTinyCorner">
-        <item name="android:fontFamily">sans-serif-condensed</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:letterSpacing">0.05</item>
-        <item name="cornerRadius">8dp</item>
-        <item name="android:backgroundTint">@color/color_button_primary</item>
-        <item name="android:textColor">@color/color_button_primary_text</item>
-    </style>
+        <style name="ButtonStyle.PrimaryTinyCorner">
+            <item name="android:fontFamily">sans-serif-condensed</item>
+            <item name="android:textSize">16sp</item>
+            <item name="android:textAllCaps">true</item>
+            <item name="android:letterSpacing">0.05</item>
+            <item name="cornerRadius">8dp</item>
+            <item name="android:backgroundTint">?attr/colorPrimary</item>
+            <item name="android:textColor">?attr/colorOnPrimary</item>
+        </style>
 
-    <style name="ButtonStyle.Secondary">
-        <item name="android:fontFamily">sans-serif-condensed</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:letterSpacing">0.05</item>
-        <item name="android:backgroundTint">@color/color_button_secondary</item>
-        <item name="android:textColor">@color/color_button_secondary_text</item>
-        <item name="strokeWidth">1dp</item>
-        <item name="strokeColor">@color/color_border</item>
-    </style>
-
+        <style name="ButtonStyle.Secondary">
+            <item name="android:fontFamily">sans-serif-condensed</item>
+            <item name="android:textSize">16sp</item>
+            <item name="android:textAllCaps">true</item>
+            <item name="android:letterSpacing">0.05</item>
+            <item name="android:backgroundTint">?attr/colorSurface</item>
+            <item name="android:textColor">?attr/colorPrimary</item>
+            <item name="strokeWidth">1dp</item>
+            <item name="strokeColor">?attr/colorOutline</item>
+        </style>
 </resources>

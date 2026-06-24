@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <style name="Base.Theme.Chronofocusmvp" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/color_button_primary</item>
         <item name="colorOnPrimary">@color/color_button_primary_text</item>
@@ -7,10 +7,27 @@
         <item name="backgroundColor">@color/color_background</item>
         <item name="colorOnBackground">@color/color_title</item>
         <item name="colorOutline">@color/color_border</item>
+        <item name="colorSurfaceVariant">@color/color_content_body</item>
         <item name="android:windowBackground">@color/color_background</item>
         <item name="android:statusBarColor">@color/color_background</item>
         <item name="android:navigationBarColor">@color/color_background</item>
     </style>
 
     <style name="Theme.Chronofocusmvp" parent="Base.Theme.Chronofocusmvp" />
+
+    <style name="Base.Theme.Chronofocusmvp.Colorido" parent="Base.Theme.Chronofocusmvp">
+        <item name="colorPrimary">@color/lilac_primary</item>
+        <item name="colorOnPrimary">@color/lilac_primary_text</item>
+        <item name="colorSurface">@color/lilac_surface</item>
+        <item name="colorOnSurface">@color/lilac_body</item>
+        <item name="backgroundColor">@color/lilac_background</item>
+        <item name="colorOnBackground">@color/lilac_title</item>
+        <item name="colorOutline">@color/lilac_border</item>
+        <item name="colorSurfaceVariant">@color/lilac_content_body</item>
+        <item name="android:windowBackground">@color/lilac_background</item>
+        <item name="android:statusBarColor">@color/lilac_background</item>
+        <item name="android:navigationBarColor">@color/lilac_background</item>
+    </style>
+
+    <style name="Theme.Chronofocusmvp.Colorido" parent="Base.Theme.Chronofocusmvp.Colorido" />
 </resources>

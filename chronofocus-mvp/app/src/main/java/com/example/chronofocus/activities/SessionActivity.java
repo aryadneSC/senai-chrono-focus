@@ -17,12 +17,13 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.chronofocus.R;
 import com.example.chronofocus.databinding.ActivitySessionBinding;
 import com.example.chronofocus.model.SessionStatus;
+import com.example.chronofocus.utils.ThemeUtils;
 import com.example.chronofocus.utils.TimerUtils;
 import com.example.chronofocus.viewmodels.SessionViewModel;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class SessionActivity extends AppCompatActivity {
+public class SessionActivity extends BaseActivity {
     private ActivitySessionBinding binding;
     private SessionViewModel viewModel;
     private AppCompatActivity context = this;
@@ -30,7 +31,9 @@ public class SessionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         EdgeToEdge.enable(this);
+
         binding = ActivitySessionBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
 

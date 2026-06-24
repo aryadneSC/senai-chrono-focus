@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -16,7 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.chronofocus.R;
 import com.example.chronofocus.databinding.ActivityLoginBinding;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
 
 
@@ -25,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         EdgeToEdge.enable(this);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         binding.btnLogin.setOnClickListener(v -> {
-            String nome = binding.edtNomeUsuario.getText().toString().trim();
+            String nome = binding.edtNomeUsuario.getText() != null ? binding.edtNomeUsuario.getText().toString().trim() : "";
 
             if (nome.isEmpty()) {
                 Toast.makeText(this, "Por favor, digite seu nome!", Toast.LENGTH_SHORT).show();

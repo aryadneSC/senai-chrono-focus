@@ -27,12 +27,13 @@ import com.example.chronofocus.databinding.ActivitySubjectListBinding;
 import com.example.chronofocus.model.DaysWeek;
 import com.example.chronofocus.model.Materia;
 import com.example.chronofocus.utils.MateriaAdapter;
+import com.example.chronofocus.utils.ThemeUtils;
 import com.example.chronofocus.utils.TimerUtils;
 import com.example.chronofocus.viewmodels.SubjectListViewModel;
 
 import java.util.List;
 
-public class SubjectListActivity extends AppCompatActivity {
+public class SubjectListActivity extends BaseActivity {
 
     private SubjectListViewModel viewModel;
     private ActivitySubjectListBinding binding;
@@ -40,9 +41,12 @@ public class SubjectListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         EdgeToEdge.enable(this);
+
         binding = ActivitySubjectListBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
+
         setContentView(view);
         viewModel = new ViewModelProvider(this, ViewModelProvider.Factory.from(SubjectListViewModel.initializer)).get(SubjectListViewModel.class);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {

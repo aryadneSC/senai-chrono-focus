@@ -4,16 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.format.DateUtils;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.viewmodel.ViewModelInitializer;
 
 import com.example.chronofocus.databinding.ActivityHomeBinding;
 import com.example.chronofocus.model.DaysWeek;
@@ -24,23 +17,20 @@ import com.example.chronofocus.viewmodels.HomeViewModel;
 
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
     private ActivityHomeBinding binding;
-    private TextView txtVerTodas, txtSaudacao;
-    private HomeViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        viewModel = new ViewModelProvider(this, ViewModelProvider.Factory.from(HomeViewModel.inicializer)).get(HomeViewModel.class);
+        HomeViewModel viewModel = new ViewModelProvider(this, ViewModelProvider.Factory.from(HomeViewModel.inicializer)).get(HomeViewModel.class);
         recuperarNomeUsuario();
         viewModel.addMateriasDoDia(DaysWeek.getCurrentDay().name(), DataUtils.returnActualDate());
 
-
-        LiveData<List<Materia>> materias = viewModel.getMateriasDoDia();
         viewModel.getMateriasDoDia().observe(this, list -> {
             MateriaAdapter adapter = new MateriaAdapter(this, list);
             binding.listView.setAdapter(adapter);
@@ -56,6 +46,16 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        binding.btnIrPerfil.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, PerfilActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        recreate();
     }
 
     private void recuperarNomeUsuario(){
@@ -63,6 +63,4 @@ public class HomeActivity extends AppCompatActivity {
         String nomeSalvo = prefs.getString("usuario_nome", "Usuário");
         binding.txtSaudacao.setText(String.format("Olá, %s!", nomeSalvo));
     }
-
-
 }
