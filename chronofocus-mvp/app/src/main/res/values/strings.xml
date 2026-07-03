@@ -32,4 +32,27 @@
     <string name="reiniciar">Reiniciar</string>
     <string name="pr_xima">Próxima</string>
     <string name="sess_o_finalizada">Sessão finalizada!</string>
+    <string name="btn_alternar_tema">Alternar Tema</string>
+    <string name="btn_voltar">Voltar</string>
+    <string name="tema_mudar_para_mono">Mudar para Monocromático</string>
+    <string name="tema_mudar_para_lilas">Mudar para Lilás</string>
+    <string name="btn_ir_perfil">Perfil</string>
+    <string name="titulo_sessoes_dia">Sessões do dia</string>
+    <string name="titulo_materias">Matérias</string>
+    <string name="proxima_materia">Próxima Matéria</string>
+    <string name="chrono_title">CHRONO</string>
+    <string name="focus_title">FOCUS</string>
+    <string name="seu_nome">Seu nome</string>
+    <string name="cadastro">Cadastro</string>
+    <string name="dias_da_semana">Dias da semana</string>
+    <string name="salvar">Salvar</string>
+    <string name="seg">seg</string>
+    <string name="ter">ter</string>
+    <string name="qua">qua</string>
+    <string name="qui">qui</string>
+    <string name="sex">sex</string>
+    <string name="sab">sáb</string>
+    <string name="dom">dom</string>
+    <string name="duracao">Duração</string>
+    <string name="nome">Nome</string>
 </resources>

@@ -30,9 +30,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Sessões do dia"
+            android:text="@string/titulo_sessoes_dia"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtSaudacao" />
+
+        <ImageButton
+            android:id="@+id/btnIrPerfil"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/btn_ir_perfil"
+            android:src="@drawable/ic_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/txtSessaoHoje" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -50,7 +61,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Matérias" />
+            android:text="@string/titulo_materias" />
 
         <TextView
             android:id="@+id/txtVerTodas"
@@ -74,6 +85,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:paddingHorizontal="@dimen/container_padding"
         android:paddingTop="16dp"
         android:paddingBottom="16dp">
@@ -83,7 +95,7 @@
             style="@style/ButtonStyle.Primary"
             android:layout_width="match_parent"
             android:layout_height="@dimen/min_button_height"
-            android:text="Iniciar" />
+            android:text="@string/iniciar" />
 
         <Button
             android:id="@+id/btnAdicionarMateria"
@@ -92,7 +104,7 @@
             android:layout_height="@dimen/min_button_height"
             android:layout_weight="1"
             android:visibility="gone"
-            android:text="Adicionar Matéria" />
+            android:text="@string/botao_adicionar" />
 
     </LinearLayout>
 

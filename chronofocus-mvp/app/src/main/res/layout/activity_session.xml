@@ -8,32 +8,29 @@
     android:orientation="vertical"
     tools:context=".activities.SessionActivity">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="@dimen/container_padding"
         android:paddingTop="@dimen/container_padding"
-        style="@style/ButtonStyle.Primary">
-
+        android:background="?attr/colorSurface">
 
         <ImageButton
             android:id="@+id/btn_back"
             android:layout_width="48dp"
             android:layout_height="48dp"
-
             android:background="@android:color/transparent"
+            android:contentDescription="@string/btn_voltar"
             android:src="@drawable/ic_arrow_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.038"
-            app:tint="@color/color_title" />
+            app:tint="?attr/colorOnBackground" />
 
         <TextView
             android:id="@+id/tvTitle"
-
             style="@style/TextStyle.BigTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,7 +58,7 @@
             style="@style/TextStyle.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/mat_ria" />
+            tools:text="Matéria" />
 
         <FrameLayout
             android:id="@+id/frameLayout"
@@ -72,8 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/timer_circle"
-                app:tint="@color/color_content_body"/>
-
+                app:tint="?attr/colorSurfaceVariant" />
 
             <TextView
                 android:id="@+id/tvTimer"
@@ -81,8 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/_00_00_00"
-                />
+                android:text="@string/_00_00_00" />
 
         </FrameLayout>
 
@@ -92,13 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             app:flexWrap="wrap"
-            app:justifyContent="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNextSubject"
-            app:layout_constraintVertical_bias="0.0">
+            app:justifyContent="center">
 
             <Button
                 android:id="@+id/btn_pause"
@@ -153,7 +142,6 @@
                 android:text="@string/reiniciar"
                 android:visibility="gone" />
 
-
         </com.google.android.flexbox.FlexboxLayout>
 
     </LinearLayout>
@@ -165,26 +153,22 @@
         android:layout_marginTop="5dp"
         android:layout_weight="2"
         android:orientation="vertical"
-        app:justifyContent="center"
         android:padding="@dimen/container_padding">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container_next_materia_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            >
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:id="@+id/tvNextSubjectTitle"
                 style="@style/TextStyle.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:text="Próxima Matéria"
+                android:text="@string/proxima_materia"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -192,21 +176,19 @@
             android:id="@+id/card_next_materia"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/color_content_body" >
+            app:cardBackgroundColor="?attr/colorSurfaceVariant">
 
             <TextView
                 android:id="@+id/tvNextSubject"
                 style="@style/TextStyle.Subtitle"
-                android:layout_weight="2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:paddingHorizontal="@dimen/body_padding"
                 android:paddingVertical="6dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/mat_ria" />
+                tools:text="Matéria" />
 
         </com.google.android.material.card.MaterialCardView>
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container_next_materia_btn"
@@ -218,18 +200,14 @@
                 style="@style/ButtonStyle.PrimaryTinyCorner"
                 android:layout_width="@dimen/min_button_width"
                 android:layout_height="match_parent"
-                android:text="Iniciar"
+                android:text="@string/iniciar"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </Button>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
-
-
 
 </LinearLayout>

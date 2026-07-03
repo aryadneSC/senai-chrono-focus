@@ -32,7 +32,7 @@
             style="@style/TextStyle.BigTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cadastro"
+            android:text="@string/cadastro"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
-            android:text="Nome" />
+            android:text="@string/nome" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilNome"
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
-            android:text="Dias da semana" />
+            android:text="@string/dias_da_semana" />
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroupDias"
@@ -89,61 +89,61 @@
             android:layout_marginBottom="24dp"
             app:singleSelection="false">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipSeg"
-                style="@style/Widget.Material3.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checkable="true"
-                android:text="seg" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipSeg"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/seg" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipTer"
-                style="@style/Widget.Material3.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checkable="true"
-                android:text="ter" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipTer"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/ter" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipQua"
-                style="@style/Widget.Material3.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checkable="true"
-                android:text="qua" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipQua"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/qua" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipQui"
-                style="@style/Widget.Material3.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checkable="true"
-                android:text="qui" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipQui"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/qui" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipSex"
-                style="@style/Widget.Material3.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checkable="true"
-                android:text="sex" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipSex"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/sex" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipSab"
-                style="@style/Widget.Material3.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checkable="true"
-                android:text="sáb" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipSab"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/sab" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipDom"
-                style="@style/Widget.Material3.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checkable="true"
-                android:text="dom" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipDom"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/dom" />
 
         </com.google.android.material.chip.ChipGroup>
 
@@ -153,7 +153,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:text="Duração" />
+            android:text="@string/duracao" />
 
 
 
@@ -319,7 +319,7 @@
             style="@style/ButtonStyle.Primary"
             android:layout_width="@dimen/min_button_width"
             android:layout_height="@dimen/min_button_height"
-            android:text="Salvar" />
+            android:text="@string/salvar" />
 
     </LinearLayout>
 

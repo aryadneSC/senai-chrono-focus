@@ -24,6 +24,7 @@
         <ImageView
             android:layout_width="192dp"
             android:layout_height="189dp"
+            android:contentDescription="@string/chrono_focus"
             android:src="@drawable/chrono"
             tools:layout_editor_absoluteX="48dp"
             tools:layout_editor_absoluteY="46dp" />
@@ -33,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:letterSpacing="0.15"
-            android:text="CHRONO"
+            android:text="@string/chrono_title"
             tools:layout_editor_absoluteX="63dp"
             tools:layout_editor_absoluteY="292dp" />
 
@@ -43,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="48dp"
             android:letterSpacing="0.3"
-            android:text="FOCUS" />
+            android:text="@string/focus_title" />
 
     </LinearLayout>
 
@@ -63,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:hint="Seu nome">
+            android:hint="@string/seu_nome">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtNomeUsuario"
@@ -79,7 +80,7 @@
             style="@style/ButtonStyle.Primary"
             android:layout_width="match_parent"
             android:layout_height="@dimen/min_button_height"
-            android:text="Entrar" />
+            android:text="@string/entrar" />
 
     </LinearLayout>
 

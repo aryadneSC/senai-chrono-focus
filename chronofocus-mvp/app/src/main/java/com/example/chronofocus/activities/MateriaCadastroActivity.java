@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -19,6 +18,7 @@ import com.example.chronofocus.databinding.ActivityMateriaCadastroBinding;
 import com.example.chronofocus.model.DaysWeek;
 import com.example.chronofocus.model.Materia;
 import com.example.chronofocus.model.SessionStatus;
+import com.example.chronofocus.utils.ThemeUtils;
 import com.example.chronofocus.viewmodels.MateriaCadastroViewModel;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class MateriaCadastroActivity extends AppCompatActivity {
+public class MateriaCadastroActivity extends BaseActivity {
 
     //utilizar binding.id_componente. em vez de FindViewById
     private ActivityMateriaCadastroBinding  binding;
@@ -38,6 +38,7 @@ public class MateriaCadastroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = ActivityMateriaCadastroBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         viewModel = new ViewModelProvider(this, ViewModelProvider.Factory.from(MateriaCadastroViewModel.initializer)).get(MateriaCadastroViewModel.class);
@@ -61,7 +62,7 @@ public class MateriaCadastroActivity extends AppCompatActivity {
 
         chipSetText(DaysWeek.values(), chipExtractor(binding.chipGroupDias));
         binding.btnSalvar.setOnClickListener(v -> {
-            String nome = binding.etNome.getText().toString();
+            String nome = binding.etNome.getText() != null ? binding.etNome.getText().toString() : "";
 
             ArrayList<DaysWeek> dia = chipTextExtractor(chipSelectedExtractor());
 
